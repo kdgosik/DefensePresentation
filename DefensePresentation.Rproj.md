@@ -35,3 +35,15 @@ Slide With Plot
 ========================================================
 
 ![plot of chunk unnamed-chunk-2](DefensePresentation.Rproj-figure/unnamed-chunk-2-1.png)
+
+
+Slide With Formula
+========================================================
+
+$$ y(t) = \mu(t) + \alpha(t) \xi + \epsilon(t) $$
+
+
+Slide With Text
+========================================================
+
+This is just a slide with normal text on it

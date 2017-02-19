@@ -26,3 +26,15 @@ Slide With Plot
 ```{r, echo=FALSE}
 plot(cars)
 ```
+
+
+Slide With Formula
+========================================================
+
+$$ y(t) = \mu(t) + \alpha(t) \xi + \epsilon(t) $$
+
+
+Slide With Text
+========================================================
+
+This is just a slide with normal text on it
