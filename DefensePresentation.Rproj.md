@@ -52,7 +52,12 @@ Model Properies
 
 Model Theoretical Results
 ========================================================
+$$ BIC_1 = n*log(RSS/n) + k*log(n) $$  
+$$ BIC_2 = n*log(RSS/n) + k*(log(n) + 2*log(d^{\star})) $$
 
+derived BIC2 by controlling the false discovery rate (FDR) and showed that it is selection consistent if $$d = O(n\xi) for some \xi > 0$$
+
+Wang (2009) showed its selection consistency for FS under ultra-high dimensional setup d = O(exp(n<U+03BE>)).
 
 Simulation Results
 ========================================================
@@ -117,6 +122,12 @@ AR(1) model assumed for our purposes.
 Legendre Polynomials
 ========================================================
 
+ - Orthogonal and therefore variables will not be correlated
+ - variety of fits up to the order of the researcher's choosing
+ - easily implemented as basis functions 
+ -- saves on computational cost and time over using splines or other basis functions learned from the data
+ 
+
 $$\begin{equation}
 \begin{split}
 P_n(x) & = \frac{1}{2^n}\sum_{k=0}^{n}{{n}\choose{k}}^2(x-1)^{n-k}(x+1)^k \\
@@ -129,14 +140,36 @@ P_n(x) & = \frac{1}{2^n}\sum_{k=0}^{n}{{n}\choose{k}}^2(x-1)^{n-k}(x+1)^k \\
 
 Legendre Polynomials
 ========================================================
+
 show toy example of how the polynomials could model the genetic effect well
 
 
-Instead of minimizing
+Generalized Least Squares
 ========================================================
 
-Instead of minimizing the ordinary least squares estimate we have to find the arg minimum of ...
+We have assumed that $$var(\epsilon) = \sigma^2I$$ when the resposne is statit but if we have correlated errors like when we have repeated measurements over time $$var(\epsilon) = \sigma^2\Sigma$$ where sigma^2 is unknown but Sigma is known.  We can use Generalized least squares, Instead of minimizing the ordinary least squares estimate we have to find the arg minimum of 
+$$ (y - X\beta)^T\Sigma^{-1}(y - X\beta) $$
+which is solved by 
+$$ \hat\beta = (X^T\Sigma^{-1}X)^{-1}X^T\Sigma^{-1}y $$
+since we can write $$\Sigma = SS^T$$, where S is a triangualar matrix using the Choleski Decomposition, we have
+$$ (y - X\beta)^T(S^{-T}S^{-1})(y - X\beta) = (S^{-1}y - S^{-1}X\beta)^T(S^{-1}y - S^{-1}X\beta)$$
 
+So GLS is like regressing $S^{-1}X$ on $S^{-1}y$. Furthermore
+$$y = X\beta + \epsilon$$
+$$S^{-1}y = S^{-1}X\beta + S^{-1}\epsilon$$
+$$y' = X'\beta + \epsilon'$$
+
+
+So we have a new regression equation $y' = X'\beta + \epsilon'$ where if we examine the variance of the new errors, $\epsilon'$
+we find
+
+$$var(\epsilon') = var(S^{-1}\epsilon) = S^{-1}(var(\epsilon))S^{-T} = S^{-1}\sigma^2SS^TS^{-T} = \sigma^2I$$
+
+So the new variables $y'$ and $X'$ are related by a regression equation which has uncorrelated errors with
+equal variance. Of course, the practical problem is that $\Sigma$ may not be known.
+We find that,
+
+$var(\hat\beta) = (X^T\Sigma^{-1}X)^{-1}\sigma^2$
 
 Simulation Results
 ========================================================
@@ -169,13 +202,27 @@ Conclusions
 ========================================================
 Power model
 many applications
+flexible model, can handle other growth equeations or biologically relevant functional equations
+
 
 
 Future Aims
 ========================================================
 
  - Aim 1
+incorporate other error structures and mathematical functions that are biologically meaningful
+
  - Aim 2
+ use other type of multivariate responses that are correlated.  Like gene expression and protein expression on same genes.  What SNPs predict these .
+ 
+ Or use expression levels of different cell lines or tissue types.  
+ 
+ You could also maybe incorporate a functional componenet to the expression levels over time. 
+ 
+ __Analysis of Time-Series Gene Expression Data: Methods, Challenges, and Opportunities__
+ Monitoring the change in expression patterns over time provides the distinct possibility of unraveling the mechanistic drivers characterizing cellular responses. Gene arrays measuring the level of mRNA expression of thousands of genes simultaneously provide a method of high-throughput data collection necessary for obtaining the scope of data required for understanding the complexities of living organisms. Unraveling the coherent complex structures of transcriptional dynamics is the goal of a large family of computational methods aiming at upgrading the information content of time-course gene expression data. In this review, we summarize the qualitative characteristics of these approaches, discuss the main challenges that this type of complex data present, and, finally, explore the opportunities in the context of developing mechanistic models of cellular response.
+ 
+ 
  - Aim 3
 
 
