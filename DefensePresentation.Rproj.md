@@ -13,37 +13,172 @@ For more details on authoring R presentations please visit <https://support.rstu
 - Bullet 2
 - Bullet 3
 
-Slide With Code
+Background
+========================================================
+type: section
+
+
+Background 1
+========================================================
+
+Background 2
+========================================================
+
+Background 3
+========================================================
+
+Motivation
+========================================================
+type: section
+
+Motivation 1
 ========================================================
 
 
-```r
-summary(cars)
-```
-
-```
-     speed           dist       
- Min.   : 4.0   Min.   :  2.00  
- 1st Qu.:12.0   1st Qu.: 26.00  
- Median :15.0   Median : 36.00  
- Mean   :15.4   Mean   : 42.98  
- 3rd Qu.:19.0   3rd Qu.: 56.00  
- Max.   :25.0   Max.   :120.00  
-```
-
-Slide With Plot
+Motivation 1
 ========================================================
 
-![plot of chunk unnamed-chunk-2](DefensePresentation.Rproj-figure/unnamed-chunk-2-1.png)
+
+Model
+========================================================
+type: section
 
 
-Slide With Formula
+Model Properies
 ========================================================
 
-$$ y(t) = \mu(t) + \alpha(t) \xi + \epsilon(t) $$
-
-
-Slide With Text
+Model Properies
 ========================================================
 
-This is just a slide with normal text on it
+Model Theoretical Results
+========================================================
+
+
+Simulation Results
+========================================================
+type: section
+
+Simulation Results
+========================================================
+
+Simulation Results
+========================================================
+
+
+Application 1
+========================================================
+type: section
+
+Application 1 results
+========================================================
+
+
+Application 2 results
+========================================================
+
+
+Application 2
+========================================================
+
+
+Application 2 as Motivation
+========================================================
+
+Use Mei Tree results and data to set up motivation for functional response variable and using the iform procedure.  How can we incorporate all information from the response variable into one model?
+
+
+Background of Functional Reponse
+========================================================
+type: section
+
+ - Regression as Linear Combination of Basis Functions
+ - Legendre Polynomials to model genetic effect of each SNP over time
+ - Generalized Least Squares for correlated errors (AR1 model assumed)
+ 
+In these sections talk about Treating linear regression as basis functions, legendre polynomials and generalized least squares. 
+
+Linear regression when there is a certain degree of correlation between the residuals in a regression model. In these cases, ordinary least squares and weighted least squares can be statistically inefficient, or even give misleading inferences
+
+
+
+Generalized Least Squares
+========================================================
+
+[GLS](https://en.wikipedia.org/wiki/Generalized_least_squares)
+
+The GLS estimator is unbiased, consistent, efficient, and asymptotically normal:
+
+
+$\sqrt n $
+
+AR(1) model assumed for our purposes.  
+
+
+Legendre Polynomials
+========================================================
+
+$$\begin{equation}
+\begin{split}
+P_n(x) & = \frac{1}{2^n}\sum_{k=0}^{n}{{n}\choose{k}}^2(x-1)^{n-k}(x+1)^k \\
+& = \sum_{k=0}^{n}{{n}\choose{k}}{{-n-1}\choose{k}}{\left(\frac{1-x}{2}\right)}^k \\
+& = 2^{-n}\sum_{k=0}^{n} x^k {{n}\choose{k}}{{\frac{n+k+1}{2}}\choose{k}} \\
+\end{split}
+(\#eq:leg-eq)
+\end{equation}$$
+
+
+Legendre Polynomials
+========================================================
+show toy example of how the polynomials could model the genetic effect well
+
+
+Instead of minimizing
+========================================================
+
+Instead of minimizing the ordinary least squares estimate we have to find the arg minimum of ...
+
+
+Simulation Results
+========================================================
+
+initial results by 100 replications
+
+
+Simulation Results
+========================================================
+
+perturbed the data to see robustness of the model more
+
+
+Application
+========================================================
+Comparison of results from running the model this way
+
+
+Application
+========================================================
+More notes on the comparison
+
+Uses all information together
+more statistically powerful this way
+
+maybe also perturb the data to see how robust the estimates are
+
+
+Conclusions
+========================================================
+Power model
+many applications
+
+
+Future Aims
+========================================================
+
+ - Aim 1
+ - Aim 2
+ - Aim 3
+
+
+Thank you
+========================================================
+
