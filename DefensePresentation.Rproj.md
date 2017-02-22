@@ -13,6 +13,7 @@ For more details on authoring R presentations please visit <https://support.rstu
 - Bullet 2
 - Bullet 3
 
+
 Background
 ========================================================
 type: section
@@ -21,15 +22,19 @@ type: section
 Background 1
 ========================================================
 
+
 Background 2
 ========================================================
+
 
 Background 3
 ========================================================
 
+
 Motivation
 ========================================================
 type: section
+
 
 Motivation 1
 ========================================================
@@ -43,12 +48,41 @@ Model
 ========================================================
 type: section
 
+Assumptions
+ - X_i and X_jX_k are marginally and jointly normal
+ - Constants two constants $0 \lt \tau_{min} \lt \frac{1}{4} \lt 1 \lt \tau_{max} \lt \infty$ s.t $2\tau_{min}  \lambda_{min}(\Sigma_{(1)})$
+ 
+
 
 Model Properies
 ========================================================
 
+Computational Complexity is linear in p.
+
+Computational complexity is O(mn) with n being the sample size and m being the number of predictors in the candidate set at that iteration of the procedure
+
+order-2 m <= 
+
+
 Model Properies
 ========================================================
+
+Remark 2. **Beyond normality.** Lemmas 6, 7, 10 play important roles in the proofs of Theorems
+1 and 2. A key assumption is $E(e^{T_0|W_i|^{\alpha}}) \le A_0$ where $W_i$ is (higher) product of predictors. It is easy to see that the condition still holds, using the argument of Lemma 9, if the marginal distributions of
+X is subGaussian. In particular, Theorem 2 is still true if (C1') holds and the total covariance matrix  $\Sigma$  has bounded eigenvalues asymptotically
+
+
+Model Theoretical Results
+========================================================
+
+Lemmas 1 - 10 
+Theorem 2
+
+show it holds for all three scenarios
+ - iForm with order-2 interactions
+ - iForm with higher order interactions
+ - iForm with generalized least squares approach
+  - show transformation from general case with correlated errors to making have uncorrelated errors
 
 Model Theoretical Results
 ========================================================
