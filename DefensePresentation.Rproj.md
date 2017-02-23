@@ -1,7 +1,7 @@
-DefensePresentation.Rproj
+STATISTICAL MODELS FOR HIGH DIMENSIONAL SCREENING OF GENETIC AND EPIGENETIC EFFECTS
 ========================================================
 author: Kirk Gosik
-date: Sys.Date()
+date: 02/27/2017
 autosize: true
 
 First Slide
@@ -9,44 +9,174 @@ First Slide
 
 For more details on authoring R presentations please visit <https://support.rstudio.com/hc/en-us/articles/200486468>.
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
+- High Throughput data 
+  - new biotechnologies that continually create this type of data
+- Biological System
+  - Use entire system when predicting a phenotype
+  - network of interaction effects
+  - Different types of interactions
+    - gene-gene interactions (epistasis)
+    - DNA Methylation Analysis
+    - gene-envrionment interactions
+- Statistical Models and analysis are playing an increasing role in  mapping and identifying important quantatitive trait loci and other genetic traits
 
-
-Background
-========================================================
-type: section
-
-
-Background 1
-========================================================
-
-
-Background 2
-========================================================
-
-
-Background 3
-========================================================
 
 
 Motivation
 ========================================================
 type: section
 
+Variable selection is usually implemented in order to handle the high dimensionality of the data.  Many techniques exist including,
 
-Motivation 1
+ - LASSO
+ - SCAD
+ - Elasticnet
+ - Dantzig selector 
+ 
+ Interaction selection Methods
+ - Glinternet (TREVOR HASTIE)
+ - hierNet (Robert Tibshirani)
+
+
+
+Motivation
 ========================================================
 
+**There are two important considerations in designing a screening operator. One pinnacle consideration is the low computational requirement. After all, screening is predominantly used to quickly reduce the dimensionality. The other is that the resulting estimator must possess the sure screening property under reasonable assumptions. Otherwise, the very purpose of variable screening is defeated. SIS operates by evaluating the correlations between the response and one predictor at a time, and retaining the features with top correlations.**
+\cite{Xiangyu Wang and Chenlei Leng, HOLP paper}
 
-Motivation 1
+
+
+Generic Model and Notation
+========================================================
+
+$\mathcal{P_1}$ - main effects predictors  
+$\mathcal{P_2}$ - interaction effects predictors  
+$\mathcal{M}$ -  Model Set  
+$\mathcal{C}$ -  Candidate Set  
+$\mathcal{S}$ -  Solution Set  
+
+$\mathcal{T}$ - True Model
+$\mathcal{F}$ - The Full Model
+
+Generic Model and Notation
+========================================================
+
+Assume a linear model
+
+$$\begin{equation}
+Y_i = \mathbf{X_i}^T\beta + \epsilon_i
+\end{equation}
+$$
+Where $(\mathbf{X_i}, Y_i)$ are independent observations
+$\epsilon \sim N(0, \sigma^2)$  
+$E(Y_i) = 0$  and   $Var(Y_i) = 1$
+
+
+
+Motivation
+========================================================
+ FORWARD REGRESSION METHOD
+ 
+ - Algorithm
+  - Step 1: (Intialization) Set $\mathcal{S}^{(0)} = \emptyset$
+  - Step 2: (Forward Regression)
+    - Evaluation. In the kth step (k = 1), we are given $S^{(k-1)}$. 
+    Then, for every $j \in \mathcal{F}/S^{(k-1)}$, we construct a
+    candidate model $\mathcal{M}^{(k-1)} = \mathcal{S}^{(k-1)} \cup j$. 
+    We then compute $RSS^{(k-1)}$
+    - Screen. We then find $a_k = argmin(RSS_{j}^{(k-1)})$ and update 
+    $\mathcal{S}^{(k)}=\mathcal{S}^{(k-1)} \cup {a_k}$ accoringly.
+  - Step 3: (Solution Path). Iterating Step for n times, which leads to a total of n nested candidate models.  We then collect those models by a solution path $\mathbb{S} = \{\mathcal{S}^{(k)}: 1 \le k \le n\}$
+    
+
+Motivation
+========================================================
+ FORWARD REGRESSION METHOD
+ 
+ - Assumptions (properites) Standard technical conditions are needed
+ 
+ - (C1) Normality assumption.  Assume that both X and $\epsilon$ follow normla distributions.
+ - (C2) Covariance matrix: $\lambda_{min}(\mathbf{A}) and \lambda_{max}(\mathbf{A})$ represent, respectively the smallest and largest eigenvalues of an arbitrary positive definite matrix $\Sigma$.  We assume that there exist two postive constants $0 \lt \tau_{min} \lt \tau_{max} \lt \infty$, such that $2\tau_{min} \lt \lambda_{min}(\Sigma) \lt \lambda_{max}(\Sigma) \lt \frac{1}{2}\tau_{max}$/
+ - (C3) Regression coefficients.  We assume that $||\beta|| \le \mathcal{C_{\beta}}$ for some constant $\mathcal{C_{\beta}} \gt 0$ and $\beta_{min} \ge \nu_{\beta}n^{\xi_{min}}$ for some $\xi_{min} \gt 0$
+ - (C4) Divergence speed of d and $d_0$.  There exists constants $\xi, \xi_0, and \nu such that log(d) \ le \nun^{\xi_{0}}$, and $\xi + 6\xi_0 + 12\xi_{min} \ lt 1$.
+ 
+ 
+
+
+Motivation
+========================================================
+
+Screening Consistency
+
+Note that, it is unrealistic to require $\mathcal{T} \in \mathcal{S}$ because this is
+not guaranteed even in the fixed dimension situation. However,
+it is indeed possible to have $\mathcal{T} \subset \mathcal{S}^{(k)}$ for some 1 = k = n (Fan
+and Lv 2008). Otherwise, there exists at least one relevant predictor
+completely missed by the solution path $\mathcal{S}$.
+
+
+Motivation
+========================================================
+
+solution path $\mathcal{S}$ to be screening consistent, if  
+$$P(\mathcal{T} \subset \mathcal{S}^{(k)} \in \mathcal{S} for some 1 \le k \le n) \rightarrow 1$$
+
+Theorem 1. Under model (2.1) and conditions (C1) - (C4), we have as $n \rightarrow \infty$
+$$P(\mathcal{T} \subset \mathcal{S}^{([K \nu n^{2\xi_0 + 4\xi_{min}}])}) \rightarrow 1$$
+
+within
+$O(n^{2\xi_0 + 4\xi_{min}})$ steps which is much smaller than the samples size, n under (C4).
+ 
+
+
+
+
+Background
+========================================================
+**HGIs**
+Genetic interactions (sometimes referred to as epistatic
+interactions) contribute to many complex traits (see Glossary).
+Despite widespread recognition of this point [1–6],
+relatively little is known about the specific forms of genetic
+interactions that are important to heritable phenotypic
+variation. To date, researchers have mainly reported genetic
+interactions involving only two loci (e.g., [7–11]).
+However, this emphasis on gene–gene interactions over
+HGIs involving three or more loci (Figure 1) is rooted in
+technical issues, rather than biology.
+
+
+Background
+========================================================
+type: section
+relate to geneitc data and the necessity of including interactions
+ - iForm procedure
+  - marginality
+  - heredity (both strong and weak)
+ - Higherorder iForm
+ - Functional Mapping iForm
+ 
+ 
+Background
+========================================================
+
+Why assume heredity principle?
+
+ - Statistical efficiency
+ - Computational efficient
+ - Cost Effective
+
+
+Background
 ========================================================
 
 
 Model
 ========================================================
 type: section
+
+$$\mathbf{Y} = \mathbf{X^T}\beta^{(1)} + \mathbf{Z^T}\beta^{(2)}$$
 
 Assumptions
  - X_i and X_jX_k are marginally and jointly normal
