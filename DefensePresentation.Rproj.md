@@ -3,9 +3,11 @@ STATISTICAL MODELS FOR HIGH DIMENSIONAL SCREENING OF GENETIC AND EPIGENETIC EFFE
 author: Kirk Gosik
 date: 02/27/2017
 autosize: true
+transition: fade
 
-First Slide
+Motivation
 ========================================================
+type: incomplete
 
 - High Throughput data 
   - new biotechnologies that continually create this type of data
@@ -21,14 +23,20 @@ First Slide
 
 Motivation
 ========================================================
-<img src='images/SystemsMapping.png'> 
+type: incomplete
 
+<div class="midcenter" style="margin-left:-300px; margin-top:-300px;">
+<img src='images/SystemsMapping.png'> </img>
+</div>
 
+<div class="footer" style="margin-top:-150px;font-size:80%;">
+This text is my footer text<br>
+Normally, the top of the text block would appear 90% of the way down the slide (i.e., at the bottom), because that is how the 'top' property is defined in the 'footer' style. However this particular footer wraps onto multiple lines, so we shift it up by specifying a negative value for the 'margin-top' property.</div>
 
 
 Motivation
 ========================================================
-type: section
+type: incomplete
 
 Variable selection is usually implemented in order to handle the high dimensionality of the data.  Many techniques exist including,
 
@@ -45,6 +53,7 @@ Variable selection is usually implemented in order to handle the high dimensiona
 
 Motivation
 ========================================================
+type: incomplete
 
 **There are two important considerations in designing a screening operator. One pinnacle consideration is the low computational requirement. After all, screening is predominantly used to quickly reduce the dimensionality. The other is that the resulting estimator must possess the sure screening property under reasonable assumptions. Otherwise, the very purpose of variable screening is defeated. SIS operates by evaluating the correlations between the response and one predictor at a time, and retaining the features with top correlations.**
 \cite{Xiangyu Wang and Chenlei Leng, HOLP paper}
@@ -53,6 +62,7 @@ Motivation
 
 Generic Model and Notation
 ========================================================
+type: incomplete
 
 $\mathcal{P_1}$ - main effects predictors  
 $\mathcal{P_2}$ - interaction effects predictors  
@@ -60,26 +70,34 @@ $\mathcal{M}$ -  Model Set
 $\mathcal{C}$ -  Candidate Set  
 $\mathcal{S}$ -  Solution Set  
 
-$\mathcal{T}$ - True Model
+$\mathcal{T}$ - True Model  
 $\mathcal{F}$ - The Full Model
 
 Generic Model and Notation
 ========================================================
+type: incomplete
 
 Assume a linear model
 
-$$\begin{equation}
+$$
+\begin{equation}
 Y_i = \mathbf{X_i}^T\beta + \epsilon_i
 \end{equation}
 $$
 Where $(\mathbf{X_i}, Y_i)$ are independent observations
-$\epsilon \sim N(0, \sigma^2)$  
-$E(Y_i) = 0$  and   $Var(Y_i) = 1$
+$$
+\epsilon \sim N(0, \sigma^2)
+$$  
+$$
+E(Y_i) = 0~~and~~Var(Y_i) = 1
+$$
 
 
 
 Motivation
 ========================================================
+type: incomplete
+
  FORWARD REGRESSION METHOD
  
  - Algorithm
@@ -96,6 +114,8 @@ Motivation
 
 Motivation
 ========================================================
+type: incomplete
+
  FORWARD REGRESSION METHOD
  
  - Assumptions (properties) Standard technical conditions are needed
@@ -110,6 +130,7 @@ Motivation
 
 Motivation
 ========================================================
+type: incomplete
 
 Screening Consistency
 
@@ -122,6 +143,7 @@ completely missed by the solution path $\mathcal{S}$.
 
 Motivation
 ========================================================
+type: incomplete
 
 solution path $\mathcal{S}$ to be screening consistent, if  
 $$P(\mathcal{T} \subset \mathcal{S}^{(k)} \in \mathcal{S} for some 1 \le k \le n) \rightarrow 1$$
@@ -138,6 +160,8 @@ $O(n^{2\xi_0 + 4\xi_{min}})$ steps which is much smaller than the samples size, 
 
 Background
 ========================================================
+type: incomplete
+
 **HGIs**
 Genetic interactions (sometimes referred to as epistatic
 interactions) contribute to many complex traits (see Glossary).
@@ -153,7 +177,8 @@ technical issues, rather than biology.
 
 Background
 ========================================================
-type: section
+type: incomplete
+
 relate to genetic data and the necessity of including interactions
  - iForm procedure
   - marginality
@@ -164,6 +189,7 @@ relate to genetic data and the necessity of including interactions
  
 Background
 ========================================================
+type: incomplete
 
 Why assume heredity principle?
 
@@ -174,12 +200,13 @@ Why assume heredity principle?
 
 Background
 ========================================================
+type: incomplete
 
 
 
 Model
 ========================================================
-type: section
+type: incomplete
 
 $$\mathbf{Y} = \mathbf{X^T}\beta^{(1)} + \mathbf{Z^T}\beta^{(2)}$$
 
@@ -191,6 +218,7 @@ Assumptions
 
 Model Properties
 ========================================================
+type: incomplete
 
 Computational Complexity is linear in p.
 
@@ -201,6 +229,7 @@ order-2 m <=
 
 Model Properties
 ========================================================
+type: incomplete
 
 Remark 2. **Beyond normality.** Lemmas 6, 7, 10 play important roles in the proofs of Theorems
 1 and 2. A key assumption is $E(e^{T_0|W_i|^{\alpha}}) \le A_0$ where $W_i$ is (higher) product of predictors. It is easy to see that the condition still holds, using the argument of Lemma 9, if the marginal distributions of
@@ -209,6 +238,7 @@ X is sub Gaussian. In particular, Theorem 2 is still true if (C1') holds and the
 
 Model Theoretical Results
 ========================================================
+type: incomplete
 
 Lemmas 1 - 10 
 Theorem 2
@@ -223,18 +253,22 @@ show it holds for all three scenarios
 
 Model Theoretical Results
 ========================================================
+type: incomplete
+
 $$ BIC_1 = n*log(RSS/n) + k*log(n) $$  
 $$ BIC_2 = n*log(RSS/n) + k*(log(n) + 2*log(d^{\star})) $$
 
-derived BIC2 by controlling the false discovery rate (FDR) and showed that it is selection consistent if $$d = O(n\xi) for some \xi > 0$$
+derived BIC2 by controlling the false discovery rate (FDR) and showed that it is selection consistent if $d_0 = O(n\xi)$ for some $\xi > 0$
 
-Wang (2009) showed its selection consistency for FS under ultra-high dimensional setup d = O(exp(nξ)).
+Wang (2009) showed its selection consistency for FS under ultra-high dimensional setup $d_0 = O(e^(n\xi))$.
 
 
 
 Model (iForm)
 ========================================================
- iForm, still needs updated
+type: incomplete
+
+ iForm, still needs updated [Go to FS Algorithm](#/7)
  
  - Algorithm
   - Step 1: (Initialization) 
@@ -258,6 +292,8 @@ Model (iForm)
  
  Model (iForm HGI)
 ========================================================
+type: incomplete
+
  iForm, still needs updated
  
  - Algorithm
@@ -281,6 +317,8 @@ Model (iForm)
 
 Simulation Results
 ========================================================
+type: incomplete
+
 Show Results from HigherOrder Simulation results comparing all models
   - show for different heredity structures
     - leave out anti-heredity
@@ -289,24 +327,46 @@ Show Results from HigherOrder Simulation results comparing all models
 
 Simulation Results
 ========================================================
+type: incomplete
 
 second simulation results of different heredity structure
 
 
 Application 1 (C Elegans)
 ========================================================
-<img src='images/OutputTable_HighDeQTL.png'> 
+type: incomplete
+
+<div class="midcenter" style="margin-left:-300px; margin-top:-300px;">
+<img src='images/OutputTable_HighDeQTL.png'> </img>
+</div>
+
+<div class="footer" style="margin-top:-150px;font-size:80%;">
+This text is my footer text<br>
+Normally, the top of the text block would appear 90% of the way down the slide (i.e., at the bottom), because that is how the 'top' property is defined in the 'footer' style. However this particular footer wraps onto multiple lines, so we shift it up by specifying a negative value for the 'margin-top' property.</div>
+
 
 Application 1 (C Elegans)
 ========================================================
-<img src='images/iForm_Network_Chr1.jpeg'> 
+type: incomplete
+
+<div class="midecenter" style="margin-left:-300px; margin-top:-300px;">
+<img src='images/iForm_Network_Chr1.jpeg'> </img>
+</div>
+
+<div class="footer" style="margin-top:-150px;font-size:80%;">
+</div>
+
 
 Application 2 (Mei Trees)
 ========================================================
+type: incomplete
+
 Mei tree comparison between running the order-2 compared to the order-3 version of the iForm selection
 
 Application 2 (Mei Trees)
 ========================================================
+type: incomplete
+
 Show results in graphical form of the different SNPs and how they impact Tree height growth over time learned from running the selection procedure.  
 
 Show Epistasis equations that were solved to figure out the epistasis.  
@@ -331,6 +391,8 @@ $$i_{123}(t) =  [(\mu_{111}(t) + \mu_{122}(t) + \mu_{212}(t) + \mu_{122}(t)) - (
 
 Application 2 (Mei Trees)
 ========================================================
+type: incomplete
+
 switch out to showing R code, 
  - maybe add the actual data points to this graph
  - how many trees make up each group
@@ -342,6 +404,7 @@ switch out to showing R code,
 
 Mei Tree as Motivation
 ========================================================
+type: incomplete
 
 Previous results were from pre-fitted growth curves fit to each tree height, following the asymptotic logistic growth curve.  
 
@@ -351,7 +414,7 @@ Use Mei Tree results and data to set up motivation for functional response varia
 
 Background of Functional Reponse
 ========================================================
-type: section
+type: incomplete
 
  - Regression as Linear Combination of Basis Functions
  - Legendre Polynomials to model genetic effect of each SNP over time
@@ -365,6 +428,7 @@ Linear regression when there is a certain degree of correlation between the resi
 
 Generalized Least Squares
 ========================================================
+type: incomplete
 
 [GLS](https://en.wikipedia.org/wiki/Generalized_least_squares)
 
@@ -377,6 +441,7 @@ AR(1) model assumed for our purposes.
 
 Legendre Polynomials
 ========================================================
+type: incomplete
 
  - Orthogonal and therefore variables will not be correlated
  - variety of fits up to the order of the researcher's choosing
@@ -398,12 +463,14 @@ P_n(x) & = \frac{1}{2^n}\sum_{k=0}^{n}{{n}\choose{k}}^2(x-1)^{n-k}(x+1)^k \\
 
 Legendre Polynomials
 ========================================================
+type: incomplete
 
 show toy example of how the polynomials could model the genetic effect well
 
 
 Generalized Least Squares
 ========================================================
+type: incomplete
 
 We have assumed that $$var(\epsilon) = \sigma^2I$$ when the response is static but if we have correlated errors like when we have repeated measurements over time $$var(\epsilon) = \sigma^2\Sigma$$ where sigma^2 is unknown but Sigma is known.  We can use Generalized least squares, Instead of minimizing the ordinary least squares estimate we have to find the arg minimum of 
 $$ (y - X\beta)^T\Sigma^{-1}(y - X\beta) $$
@@ -432,6 +499,7 @@ $var(\hat\beta) = (X^T\Sigma^{-1}X)^{-1}\sigma^2$
 
 iForm with Legendre Model
 ========================================================
+type: incomplete
 
 $$ \alpha_j(t) = (L_0(t), L_1(t), ... , L_s(t))*(u_{j0}, u_{j1},...,u_{js})^T $$
 $$ \beta_j(t) = (L_0(t), L_1(t), ... , L_{s'}(t))*(v_{j0}, v_{j1},...,v_{js'})^T $$
@@ -442,18 +510,22 @@ $y(t) = \mu(t) + \sum_{j=1}^{J}\alpha_j(t)\xi_j + \sum_{k=1}^{K}\beta_k(t)\zeta_
 
 Simulation Results
 ========================================================
+type: incomplete
 
 initial results by 100 replications
 
 
 Simulation Results
 ========================================================
+type: incomplete
 
 perturbed the data to see robustness of the model more
 
 
 Application
 ========================================================
+type: incomplete
+
 Comparison of results from running the model this way
 
 Mei Trees results with running functional model
@@ -461,6 +533,8 @@ Mei Trees results with running functional model
 
 Application
 ========================================================
+type: incomplete
+
 More notes on the comparison
 
 Uses all information together
@@ -471,6 +545,8 @@ maybe also perturb the data to see how robust the estimates are
 
 Conclusions
 ========================================================
+type: incomplete
+
 Power model
 many applications
 flexible model, can handle other growth equations or biologically relevant functional equations
@@ -479,6 +555,7 @@ flexible model, can handle other growth equations or biologically relevant funct
 
 Future Aims
 ========================================================
+type: incomplete
 
  - Aim 1
 incorporate other error structures and mathematical functions that are biologically meaningful
@@ -497,6 +574,14 @@ incorporate other error structures and mathematical functions that are biologica
  - Aim 3
 
 
+Referneces
+========================================================
+type: incomplete
+
+Acknowledgments
+========================================================
+type: incomplete
+
 Thank you
 ========================================================
-
+type: incomplete

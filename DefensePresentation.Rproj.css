@@ -1,0 +1,43 @@
+.exclaim .reveal .state-background {
+  background: darkblue;
+} 
+
+.exclaim .reveal h1,
+.exclaim .reveal h2,
+.exclaim .reveal p {
+  color: white;
+}
+
+.small-code pre code {
+  font-size: 1em;
+}
+
+.footer {
+    color: black;
+    background: #E8E8E8;
+    position: fixed;
+    top: 90%;
+    text-align:center;
+    width:100%;
+}
+
+.midcenter {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
+
+/* Mark slides as incomplete to spot them easier */
+.incomplete {
+	content: 'INCOMPLETE';
+	font-weight: bold;
+	position: absolute;
+	top: 10%;
+	left: 10%;
+	padding: .1em .4em 0;
+	border: .1em solid;
+	color: #FF0000;
+	font-size: 140%;
+	border-radius: .2em;
+	transform: rotate(15deg);
+}
