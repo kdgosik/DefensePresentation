@@ -29,91 +29,30 @@ type: exclaim
 
 Genotype-Phenotype Map
 ========================================================
-type: incomplete
+type: exclaim
 
 <div class="midcenter" style="margin-left:-300px; margin-top:-300px;">
-<img src='images/SystemsMapping.png' width="120%" height=100%> </img>
+<img src='images/SystemsMapping.png' width="1500" height="500"> </img>
+<footer>
+Genotype-Phenotype mapping of various quantitative trait loci
+</footer>
 </div>
 
-<div class="footer" style="margin-top:-150px;font-size:80%;">
-Genotype-Phenotype mapping of various quantitative trait loci</div>
 
 
-
-Genetic Interactions
-========================================================
-type: incomplete
-
-**HGIs**
-Genetic interactions (sometimes referred to as epistatic
-interactions) contribute to many complex traits (see Glossary).
-Despite widespread recognition of this point [1–6],
-relatively little is known about the specific forms of genetic
-interactions that are important to heritable phenotypic
-variation. To date, researchers have mainly reported genetic
-interactions involving only two loci (e.g., [7–11]).
-However, this emphasis on gene–gene interactions over
-HGIs involving three or more loci (Figure 1) is rooted in
-technical issues, rather than biology.
-
-
-
-
-Motivation
-========================================================
-type: incomplete
-
-<div class="midcenter" style="margin-left:-300px; margin-top:-300px;">
-<img src='images/EpistasisScissors.png' style="background-color:transparent; border:0px; box-shadow:none;"> </img>
-</div>
-
-<div class="footer" style="margin-top:0px;font-size:80%;">
-Epistasis Works Like Scissors</div>
-
-
-
-Motivation
-========================================================
-type: incomplete
-
-**There are two important considerations in designing a screening operator. One pinnacle consideration is the low computational requirement. After all, screening is predominantly used to quickly reduce the dimensionality. The other is that the resulting estimator must possess the sure screening property under reasonable assumptions. Otherwise, the very purpose of variable screening is defeated. SIS operates by evaluating the correlations between the response and one predictor at a time, and retaining the features with top correlations.**
-\cite{Xiangyu Wang and Chenlei Leng, HOLP paper}
-
-
-
-
-Motivation
-========================================================
-type: incomplete
-
-<h3> Variable selection is usually implemented in order to handle the high dimensionality of the data.  Many techniques exist including, </h3>
-
- - LASSO
- - SCAD
- - Elasticnet
- - Dantzig selector 
- 
-<h3> Interaction selection Methods </h3>
- - Glinternet (TREVOR HASTIE)
- - hierNet (Robert Tibshirani)
-
-
-Notation
+Experimental Design
 ========================================================
 type: exclaim
 
-$\mathcal{P_1}$ - main effects predictors  
-$\mathcal{P_2}$ - interaction effects predictors  
-$\mathcal{M}$ -  Model Set  
-$\mathcal{C}$ -  Candidate Set  
-$\mathcal{S}$ -  Solution Set  
+<small>
+Suppose that our data contains n progeny, each of which is genotyped by p markers, such as single nucleotide polymorphisms (SNPs), distributed over different chromosomes
+</small>
 
-$\mathcal{T}$ - True Model  
-$\mathcal{F}$ - The Full Model
+<div class="midcenter" style="margin-left:-500px; margin-top:0px;">
+<img src='images/SNP_Picture.png' style="background-color:transparent; border:0px; box-shadow:none;"> </img>
+</div>
 
-Assume a Linear Model
-========================================================
-type: exclaim
+***
 
 <br>
 $$
@@ -133,48 +72,107 @@ $$
 
 
 
+Genetic Interactions
+========================================================
+type: exclaim
+
+Genetic interactions (sometimes referred to as epistatic
+interactions) contribute to many complex traits.  Despite widespread recognition of this point,
+relatively little is known about the specific forms of genetic interactions that are important to heritable phenotypic
+variation. To date, researchers have mainly reported genetic interactions involving only two loci. However, this emphasis on gene–gene interactions over highr-order genetic interactions (HGIs) involving three or more loci is rooted in technical issues, rather than biology. [[1]](#/48)
+
+<div class="midcenter" style="margin-left:150px; margin-top:150px;">
+<img src='images/EpistasisScissors.png' height="200" widith="200" style="background-color:transparent; border:0px; box-shadow:none;"> </img>
+<footer>
+Epistatic Effects Work Like Scissors
+</footer>
+</div>
+
+
+Important Considerations 
+========================================================
+type: exclaim
+incremental: true
+
+ Consider all SNPs at once as possible QTLs (p >> n)  
+
+Screening is predominantly used to quickly reduce the dimensionality. We would need a relativley efficient computational procedure and the resulting model should posses sure screening properties under reasonable assumptions
+<small>
+ - Including order-2 epistatic effects increases to ${{p}\choose{2}}+p=\frac{p^2+p}{2}$
+  - p = 500, gives 125,250 possible candidate SNPs and epistatic effects
+ - Including order-3 epistatic effects increases to ${{p}\choose{3}}+{{p}\choose{2}}+p=\frac{p^3+5p}{6}$
+  - p = 500 gives 20,833,750 possibie candidate SNPs and epistatic effects
+</small>
+
+
+Variable Selection
+========================================================
+type: exclaim
+
+<h4> Variable selection is usually implemented in order to handle the high dimensionality of the data.  Many techniques exist including, </h3>
+
+ - LASSO
+ - SCAD
+ - Elasticnet
+ - Dantzig selector 
+ 
+<h4> Interaction selection Methods </h3>
+ - Glinternet[[2]](#/48)
+ - hierNet [[3]](#/48)
+
+
+Notation
+========================================================
+type: exclaim
+
+$\mathcal{P_1}$ - main effects predictors  
+$\mathcal{P_2}$ - interaction effects predictors  
+$\mathcal{M}$ -  Model Set  
+$\mathcal{C}$ -  Candidate Set  
+$\mathcal{S}$ -  Solution Set  
+
+$\mathcal{T}$ - True Model  
+$\mathcal{F}$ - The Full Model
+
+
 FORWARD REGRESSION METHOD
 ========================================================
-type: incomplete
+type: exclaim
 
- - Algorithm
-  - Step 1: (Initialization) Set $\mathcal{S}^{(0)} = \emptyset$
-  - Step 2: (Forward Regression)
-    - Evaluation. In the kth step (k ≥ 1), we are given $S^{(k−1)}$. 
+<small>
+Algorithm 
+ - Step 1: (Initialization) Set $\mathcal{S}^{(0)} = \emptyset$
+ - Step 2: (Forward Regression)
+   - Evaluation. In the kth step (k ≥ 1), we are given $S^{(k−1)}$. 
     Then, for every $j \in \mathcal{F}/S^{(k−1)}$, we construct a
     candidate model $\mathcal{M}^{(k−1)} = \mathcal{S}^{(k-1)} \cup j$. 
     We then compute $RSS^{(k−1)}$
     - Screen. We then find $a_k = argmin(RSS_{j}^{(k-1)})$ and update 
     $\mathcal{S}^{(k)}=\mathcal{S}^{(k-1)} \cup {a_k}$ accordingly.
-  - Step 3: (Solution Path). Iterating Step for n times, which leads to a total of n nested candidate models.  We then collect those models by a solution path $\mathbb{S} = \{\mathcal{S}^{(k)}: 1 \le k \le n\}$
-    
+ - Step 3: (Solution Path). Iterating Step for n times, which leads to a total of n nested candidate models.  We then collect those models by a solution path $\mathbb{S} = \{\mathcal{S}^{(k)}: 1 \le k \le n\}$
+</small>    
 
 FORWARD REGRESSION METHOD
 ========================================================
-type: incomplete
- 
-Assumptions (properties) Standard technical conditions are needed to show screening consistency of forward regression
- 
+type: exclaim
+
+<small>
+Assumptions for standard technical conditions needed to show screening consistency of forward regression [[4]](#/48)
  - (C1) Normality assumption.  Assume that both X and $\epsilon$ follow normal distributions.
- - (C2) Covariance matrix: $\lambda_{min}(\mathbf{A}) and \lambda_{max}(\mathbf{A})$ represent, respectively the smallest and largest eigenvalues of an arbitrary positive definite matrix $\Sigma$.  We assume that there exist two positive constants $0 \lt \tau_{min} \lt \tau_{max} \lt \infty$, such that $2\tau_{min} \lt \lambda_{min}(\Sigma) \lt \lambda_{max}(\Sigma) \lt \frac{1}{2}\tau_{max}$/
+ - (C2) Covariance matrix: $\lambda_{min}(\mathbf{A})~and~\lambda_{max}(\mathbf{A})$ represent, respectively the smallest and largest eigenvalues of an arbitrary positive definite matrix $\Sigma$.  We assume that there exist two positive constants $0 \lt \tau_{min} \lt \tau_{max} \lt \infty$, such that $2\tau_{min} \lt \lambda_{min}(\Sigma) \lt \lambda_{max}(\Sigma) \lt \frac{1}{2}\tau_{max}$
  - (C3) Regression coefficients.  We assume that $||\beta|| \le \mathcal{C_{\beta}}$ for some constant $\mathcal{C_{\beta}} \gt 0$ and $\beta_{min} \ge \nu_{\beta}n^{\xi_{min}}$ for some $\xi_{min} \gt 0$
  - (C4) Divergence speed of d and $d_0$.  There exists constants 
- $\xi$, $\xi_0$, and $\nu$ such that $log(d) \le \nu n^{\xi_{0}}$, and $\xi + 6\xi_0 + 12\xi_{min} \ lt 1$.
-
+ $\xi$, $\xi_0$, and $\nu$ such that $log(d) \le \nu n^{\xi_{0}}$, and $\xi + 6\xi_0 + 12\xi_{min} \lt 1$.
+</small>
 
 
 Screening Consistency
 ========================================================
-type: incomplete
+type: exclaim
+<small>
+Note that, it is unrealistic to require $\mathcal{T} \in \mathcal{S}$ because this is not guaranteed even in the fixed dimension situation. However, it is indeed possible to have $\mathcal{T} \subset \mathcal{S}^{(k)}$ for some 1 ≤ k ≤ n [[6]](#/48). Otherwise, there exists at least one relevant predictor completely missed by the solution path $\mathcal{S}$.
 
-Note that, it is unrealistic to require $\mathcal{T} \in \mathcal{S}$ because this is not guaranteed even in the fixed dimension situation. However, it is indeed possible to have $\mathcal{T} \subset \mathcal{S}^{(k)}$ for some 1 ≤ k ≤ n (Fan and Lv 2008). Otherwise, there exists at least one relevant predictor completely missed by the solution path $\mathcal{S}$.
-
-
-Motivation
-========================================================
-type: incomplete
-
-Lemma 3 and Lemma 4
+(Lemma 3 and Lemma 4)
 
 solution path $\mathcal{S}$ to be screening consistent, if  
 $$P(\mathcal{T} \subset \mathcal{S}^{(k)} \in \mathcal{S} for some 1 \le k \le n) \rightarrow 1$$
@@ -184,13 +182,21 @@ $$P(\mathcal{T} \subset \mathcal{S}^{([K \nu n^{2\xi_0 + 4\xi_{min}}])}) \righta
 
 within
 $O(n^{2\xi_0 + 4\xi_{min}})$ steps which is much smaller than the samples size, n under (C4).
- 
+</small> 
 
-Background
+Genetic Interactions
+========================================================
+type: exclaim
+
+Move genetic interaction slide here
+
+
+Marginality
 ========================================================
 type: incomplete
 
-relate to genetic data and the necessity of including interactions
+Forward Selection already includes the marginality principle.  
+Relate to genetic data and the necessity of including interactions
  - iForm procedure
   - marginality
   - heredity (both strong and weak)
@@ -198,7 +204,7 @@ relate to genetic data and the necessity of including interactions
  - Functional Mapping iForm
  
  
-Background
+Heredity Principle
 ========================================================
 type: incomplete
 
@@ -209,33 +215,73 @@ Why assume heredity principle?
  - Cost Effective
 
 
-Background
-========================================================
-type: incomplete
-
-
-
 Model
 ========================================================
 type: incomplete
 
-$$\mathbf{Y} = \mathbf{X^T}\beta^{(1)} + \mathbf{Z^T}\beta^{(2)}$$
+$$\mathbf{Y} = \mathbf{X^T}\beta^{(1)} + \mathbf{Z^T}\beta^{(2)} + \epsilon$$
 
 Assumptions
- - X_i and X_jX_k are marginally and jointly normal
+ - $X_i$ and $X_jX_k$ are marginally and jointly normal
  - Constants two constants $0 \lt \tau_{min} \lt \frac{1}{4} \lt 1 \lt \tau_{max} \lt \infty$ s.t $2\tau_{min}  \lambda_{min}(\Sigma_{(1)})$
+ 
+
+Model (iForm)
+========================================================
+type: incomplete
+
+ iForm, still needs updated [Go to FS Algorithm](#/7)
+ 
+ - Algorithm
+  - Step 1: (Initialization) 
+  Set $\mathcal{S}^{(0)} = \emptyset$, $\mathcal{M}_0 = \emptyset$ and $\mathcal{C}_0 = \mathcal{P_1}$
+  
+  - Step 2: (Selection)
+    - Evaluation. In the kth step (k ≥ 1), we are given $S^{(k−1)}$. 
+    Then, for every $j \in \mathcal{F}/S^{(k−1)}$, we construct a
+    candidate model $\mathcal{M}^{(k−1)} = \mathcal{S}^{(k-1)} \cup j$. 
+    We then compute $RSS^{(k−1)}$
+    - Screen. We then find $a_k = argmin(RSS_{j}^{(k-1)})$ and update 
+    $\mathcal{S}^{(k)}=\mathcal{S}^{(k-1)} \cup {a_k}$ accordingly.
+    
+    (Selection) In the kth step with given $\mathcal{S}^{(k-1)}$, $\mathcal{C}^{k−1}$ and $\mathcal{M}^{k−1}$, forward regression is used to select one more predictor from $\mathcal{C}^{k−1}/ \mathcal{S}^{k−1}$ into the model. We add the selected one into $\mathcal{S}^{k−1}$ to get $\mathcal{S}^k$. We also update $\mathcal{C}^k$ and $\mathcal{M}^k$ if the newly selected predictor is a main effect. Otherwise, $\mathcal{C}^k = \mathcal{C}^{k−1}$ and $\mathcal{M}^k = \mathcal{M}^{k−1}$.
+    
+  - Step 3: (Solution Path). Iterating Step 2, for d times, which leads to a total of n nested candidate models.  We then collect those models by a solution path $\mathbb{S} = \{\mathcal{S}^{(k)}: 1 \le k \le n\}$
+
+ 
+ Model (iForm HGI)
+========================================================
+type: incomplete
+
+ iForm, still needs updated
+ 
+ - Algorithm
+  - Step 1: (Initialization) 
+  Set $\mathcal{S}^{(0)} = \emptyset$, $\mathcal{M}_0 = \emptyset$ and $\mathcal{C}_0 = \mathcal{P_1}$
+  
+  - Step 2: (Selection)
+    - Evaluation. In the kth step (k ≥ 1), we are given $S^{(k−1)}$. 
+    Then, for every $j \in \mathcal{F}/S^{(k−1)}$, we construct a
+    candidate model $\mathcal{M}^{(k−1)} = \mathcal{S}^{(k-1)} \cup j$. 
+    We then compute $RSS^{(k−1)}$
+    - Screen. We then find $a_k = argmin(RSS_{j}^{(k-1)})$ and update 
+    $\mathcal{S}^{(k)}=\mathcal{S}^{(k-1)} \cup {a_k}$ accordingly.
+    
+    (Selection) In the kth step with given $\mathcal{S}^{(k-1)}$, $\mathcal{C}^{k−1}$ and $\mathcal{M}^{k−1}$, forward regression is used to select one more predictor from $\mathcal{C}^{k−1}/ \mathcal{S}^{k−1}$ into the model. We add the selected one into $\mathcal{S}^{k−1}$ to get $\mathcal{S}^k$. We also update $\mathcal{C}^k$ and $\mathcal{M}^k$ if the newly selected predictor is a main effect. Otherwise, $\mathcal{C}^k = \mathcal{C}^{k−1}$ and $\mathcal{M}^k = \mathcal{M}^{k−1}$.
+    
+  - Step 3: (Solution Path). Iterating Step 2, for d times, which leads to a total of n nested candidate models.  We then collect those models by a solution path $\mathbb{S} = \{\mathcal{S}^{(k)}: 1 \le k \le n\}$
  
 
 
 Model Properties
 ========================================================
-type: incomplete
+type: exclaim
 
-Computational Complexity is linear in p.
+Computational complexity is O(mn) with n being the sample size and m being the number of predictors in the candidate set at that iteration of the procedure, 
+ - order-2 $m \le p+n(n+1)~$ for any step.  Making it $O(n^2p+n^4)$
+ - order-3 $m \le p+n(n^2-3n+8)~$ for any step. Making it $O(n^2p+n^5-3n^4+8n^3)$
 
-Computational complexity is O(mn) with n being the sample size and m being the number of predictors in the candidate set at that iteration of the procedure
-
-order-2 m <= 
+Therefore the complexity grows linearly with p
 
 
 Model Properties
@@ -262,6 +308,7 @@ show it holds for all three scenarios
  - iForm with generalized least squares approach
   - show transformation from general case with correlated errors to making have uncorrelated errors
 
+
 Model Theoretical Results
 ========================================================
 type: incomplete
@@ -275,91 +322,77 @@ Wang (2009) showed its selection consistency for FS under ultra-high dimensional
 
 
 
-Model (iForm)
+Simulation (truth obeys strong heredity)
 ========================================================
-type: incomplete
+type: exclaim
 
- iForm, still needs updated [Go to FS Algorithm](#/7)
- 
- - Algorithm
-  - Step 1: (Initialization) 
-  Set $\mathcal{S}^{(0)} = \emptyset$, $\mathcal{M}_0 = \emptyset$ and $\mathcal{C}_0 = \mathcal{P_1}$
-  
-  - Step 2: (Selection)
-    - Evaluation. In the kth step (k ≥ 1), we are given $S^{(k−1)}$. 
-    Then, for every $j \in \mathcal{F}/S^{(k−1)}$, we construct a
-    candidate model $\mathcal{M}^{(k−1)} = \mathcal{S}^{(k-1)} \cup j$. 
-    We then compute $RSS^{(k−1)}$
-    - Screen. We then find $a_k = argmin(RSS_{j}^{(k-1)})$ and update 
-    $\mathcal{S}^{(k)}=\mathcal{S}^{(k-1)} \cup {a_k}$ accordingly.
-    
-    (Selection) In the kth step with given $\mathcal{S}^{(k-1)}$, $\mathcal{C}^{k−1}$ and $\mathcal{M}^{k−1}$, forward regression is used to select one more predictor from $\mathcal{C}^{k−1}/ \mathcal{S}^{k−1}$ into the model. We add the selected one into $\mathcal{S}^{k−1}$ to get $\mathcal{S}^k$. We also update $\mathcal{C}^k$ and $\mathcal{M}^k$ if the newly selected predictor is a main effect. Otherwise, $\mathcal{C}^k = \mathcal{C}^{k−1}$ and $\mathcal{M}^k = \mathcal{M}^{k−1}$.
-    
-  - Step 3: (Solution Path). Iterating Step 2, for d times, which leads to a total of n nested candidate models.  We then collect those models by a solution path $\mathbb{S} = \{\mathcal{S}^{(k)}: 1 \le k \le n\}$
- 
- 
- 
- 
- 
- Model (iForm HGI)
+```{r, echo = FALSE}
+library(XLConnect)
+
+wb <- loadWorkbook("iForm_Order3_SimulationResults.xlsx")
+sim1 <- readWorksheet(wb, sheet = "Simulation1")
+kable(sim1)
+
+```
+
+Simulation (truth obeys weak heredity)
 ========================================================
-type: incomplete
+type: exclaim
 
- iForm, still needs updated
- 
- - Algorithm
-  - Step 1: (Initialization) 
-  Set $\mathcal{S}^{(0)} = \emptyset$, $\mathcal{M}_0 = \emptyset$ and $\mathcal{C}_0 = \mathcal{P_1}$
-  
-  - Step 2: (Selection)
-    - Evaluation. In the kth step (k ≥ 1), we are given $S^{(k−1)}$. 
-    Then, for every $j \in \mathcal{F}/S^{(k−1)}$, we construct a
-    candidate model $\mathcal{M}^{(k−1)} = \mathcal{S}^{(k-1)} \cup j$. 
-    We then compute $RSS^{(k−1)}$
-    - Screen. We then find $a_k = argmin(RSS_{j}^{(k-1)})$ and update 
-    $\mathcal{S}^{(k)}=\mathcal{S}^{(k-1)} \cup {a_k}$ accordingly.
-    
-    (Selection) In the kth step with given $\mathcal{S}^{(k-1)}$, $\mathcal{C}^{k−1}$ and $\mathcal{M}^{k−1}$, forward regression is used to select one more predictor from $\mathcal{C}^{k−1}/ \mathcal{S}^{k−1}$ into the model. We add the selected one into $\mathcal{S}^{k−1}$ to get $\mathcal{S}^k$. We also update $\mathcal{C}^k$ and $\mathcal{M}^k$ if the newly selected predictor is a main effect. Otherwise, $\mathcal{C}^k = \mathcal{C}^{k−1}$ and $\mathcal{M}^k = \mathcal{M}^{k−1}$.
-    
-  - Step 3: (Solution Path). Iterating Step 2, for d times, which leads to a total of n nested candidate models.  We then collect those models by a solution path $\mathbb{S} = \{\mathcal{S}^{(k)}: 1 \le k \le n\}$
- 
+```{r, echo = FALSE}
 
+sim2 <- readWorksheet(wb, sheet = "Simulation2")
+kable(sim2)
 
+```
 
-Simulation Results
+Simulation (truth is anti-heredity)
 ========================================================
-type: incomplete
+type: exclaim
 
-Show Results from HigherOrder Simulation results comparing all models
-  - show for different heredity structures
+```{r, echo = FALSE}
 
+sim3 <- readWorksheet(wb, sheet = "Simulation3")
+kable(sim3)
 
+```
 
-Simulation Results
+Simulation (truth is constructed of pure interactions)
 ========================================================
-type: incomplete
+type: exclaim
 
-second simulation results of different heredity structure
+```{r, echo = FALSE}
+
+sim4 <- readWorksheet(wb, sheet = "Simulation4")
+kable(sim4)
+
+```
+
 
 
 Application 1 (C Elegans)
 ========================================================
-type: incomplete
-incremental: true
+type: exclaim
 
-herediabilty calc as tooltip?
+ - To genetically dissect the causes of different variability among C. elegans traits, transcript abundances of 20,000 gene transcripts were measured by microarray in developmentally synchronized young adult hermaphrodites of 208 recombinant inbred  advanced intercross lines from a cross between the laboratory strain, N2, and a wild isolate from Hawaii, CB485618
+
+ - Microarray data preprocessed through a normal–exponential convolution background correction and were normalized using quantile standardization  [[7]](#/48)
+
+
+
+Application 1 (C Elegans)
+========================================================
+type: exclaim
+incremental: true
 
 <div class="midcenter" style="margin-left:-300px; margin-top:-300px;">
 <img src='images/OutputTable_HighDeQTL.png'> </img>
 </div>
 
-<div class="footer" style="margin-top:-150px;font-size:80%;">
-Maybe just remove footer</div>
-
 
 Application 1 (C Elegans)
 ========================================================
-type: incomplete
+type: exclaim
 
 <div class="midecenter" style="margin-left:-300px; margin-top:-300px;">
 <img src='images/iForm_Network_Chr1.jpeg'> </img>
@@ -371,58 +404,37 @@ type: incomplete
 
 Application 2 (Mei Trees)
 ========================================================
-type: incomplete
+type: exclaim
 incremental: true
 
-Mei tree comparison between running the order-2 compared to the order-3 version of the iForm selection
+```{r, echo = FALSE}
+wb <- loadWorkbook("MeiTreeOutput.xlsx")
+order2 <- readWorksheet(wb, sheet = "order2")
+kable(order2)
+```
 
-<table>
-  <tr>
-    <th>Company</th>
-    <th>Contact</th>
-    <th>Country</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td>Centro comercial Moctezuma</td>
-    <td>Francisco Chang</td>
-    <td>Mexico</td>
-  </tr>
-  <tr>
-    <td>Ernst Handel</td>
-    <td>Roland Mendel</td>
-    <td>Austria</td>
-  </tr>
-  <tr>
-    <td>Island Trading</td>
-    <td>Helen Bennett</td>
-    <td>UK</td>
-  </tr>
-  <tr>
-    <td>Laughing Bacchus Winecellars</td>
-    <td>Yoshi Tannamuri</td>
-    <td>Canada</td>
-  </tr>
-  <tr>
-    <td>Magazzini Alimentari Riuniti</td>
-    <td>Giovanni Rovelli</td>
-    <td>Italy</td>
-  </tr>
-</table>
+
+Application 2 (Mei Trees)
+========================================================
+type: exclaim
+incremental: true
+
+```{r, echo = FALSE}
+order3 <- readWorksheet(wb, sheet = "order3")
+kable(order3)
+```
+
 
 Application 2 (Mei Trees)
 ========================================================
 type: exclaim
 
 Show results in graphical form of the different SNPs and how they impact Tree height growth over time learned from running the selection procedure.  
-
+<small>
 $\alpha_1 =$ what SNP in the table  
 $\alpha_2 =$ what SNP in the table  
 $\alpha_3 =$ what SNP in the table  
+</small>
 
 <div class="tooltip">
 <img src='images/GrowthCurveComparison.png', width = "1000px"></img>
@@ -443,34 +455,24 @@ $\mu_{222} = \mu(t) - \alpha_1(t) - \alpha_2(t) - \alpha_3(t) + i_{12}(t) + i_{1
 
 Application 2 (Mei Trees)
 ========================================================
-type: incomplete
+type: exclaim
 
-Show Epistasis equations that were solved to figure out the epistasis.  
-Show the epistasis graph. 
+<div class="tooltip">
+<img src='images/EpistasisComparison.png', width = "1000px"></img>
+  <span class="tooltiptext">
 
 $$i_{12}(t) = [(\mu_{111}(t) + \mu_{112}(t) + \mu_{221}(t) + \mu_{222}(t)) - (\mu_{121}(t) + \mu_{122}(t) + \mu_{211}(t) + \mu_{212}(t))]$$
 $$i_{13}(t) =  [(\mu_{111}(t) + \mu_{121}(t) + \mu_{212}(t) + \mu_{222}(t)) - (\mu_{112}(t) + \mu_{122}(t) + \mu_{211}(t) + \mu_{221}(t))]$$
 $$i_{23}(t) =  [(\mu_{111}(t) + \mu_{122}(t) + \mu_{211}(t) + \mu_{222}(t)) - (\mu_{112}(t) + \mu_{121}(t) + \mu_{212}(t) + \mu_{221}(t))]$$
 $$i_{123}(t) =  [(\mu_{111}(t) + \mu_{122}(t) + \mu_{212}(t) + \mu_{122}(t)) - (\mu_{112}(t) + \mu_{121}(t) + \mu_{211}(t) + \mu_{222}(t))]$$
 
-
-
-Application 2 (Mei Trees)
-========================================================
-type: incomplete
-
-switch out to showing R code, 
- - maybe add the actual data points to this graph
- - how many trees make up each group
- 
-<img src='images/GrowthCurveComparison.png', width = "1000px">   
-<img src='images/EpistasisComparison.png', width = "1000px">
-
+</span>
+</div>
 
 
 Mei Tree as Motivation
 ========================================================
-type: incomplete
+type: exclaim
 
 Previous results were from pre-fitted growth curves fit to each tree height, following the asymptotic logistic growth curve.  
 
@@ -480,7 +482,7 @@ Use Mei Tree results and data to set up motivation for functional response varia
 
 Background of Functional Response
 ========================================================
-type: incomplete
+type: exclaim
 
  - Regression as Linear Combination of Basis Functions
  - Legendre Polynomials to model genetic effect of each SNP over time
@@ -494,7 +496,7 @@ Linear regression when there is a certain degree of correlation between the resi
 
 Generalized Least Squares
 ========================================================
-type: incomplete
+type: exclaim
 
 [GLS](https://en.wikipedia.org/wiki/Generalized_least_squares)
 
@@ -507,7 +509,7 @@ AR(1) model assumed for our purposes.
 
 Legendre Polynomials
 ========================================================
-type: incomplete
+type: exclaim
 
  - Orthogonal and therefore variables will not be correlated
  - variety of fits up to the order of the researcher's choosing
@@ -577,35 +579,35 @@ ggplot(L_melt, aes(x = t, y = value, group = variable, color = brewer.pal(10, "S
 
 Legendre Polynomials
 ========================================================
-type: incomplete
+type: exclaim
 
 show toy example of how the polynomials could model the genetic effect well
 
 
 Legendre Polynomials
 ========================================================
-type: incomplete
+type: exclaim
 
 <img src='images/GrowthCurveExample.png', width = "1000px"> 
 
 
 Legendre Polynomials
 ========================================================
-type: incomplete
+type: exclaim
 
 <img src='images/LegendreFit.png', width = "1000px"> 
 
 
 Legendre Polynomials
 ========================================================
-type: incomplete
+type: exclaim
 
 <img src='images/ExampleDataGrowthCurve.png', width = "1000px"> 
 
 
 Generalized Least Squares
 ========================================================
-type: incomplete
+type: exclaim
 
 We have assumed that $$var(\epsilon) = \sigma^2I$$ when the response is static but if we have correlated errors like when we have repeated measurements over time $$var(\epsilon) = \sigma^2\Sigma$$ where sigma^2 is unknown but Sigma is known.  We can use Generalized least squares, Instead of minimizing the ordinary least squares estimate we have to find the arg minimum of 
 $$ (y - X\beta)^T\Sigma^{-1}(y - X\beta) $$
@@ -634,7 +636,7 @@ $var(\hat\beta) = (X^T\Sigma^{-1}X)^{-1}\sigma^2$
 
 iForm with Legendre Model
 ========================================================
-type: incomplete
+type: exclaim
 
 $$ \alpha_j(t) = (L_0(t), L_1(t), ... , L_s(t))*(u_{j0}, u_{j1},...,u_{js})^T $$
 $$ \beta_j(t) = (L_0(t), L_1(t), ... , L_{s'}(t))*(v_{j0}, v_{j1},...,v_{js'})^T $$
@@ -646,7 +648,7 @@ $y(t) = \mu(t) + \sum_{j=1}^{J}\alpha_j(t)\xi_j + \sum_{k=1}^{K}\beta_k(t)\zeta_
  
  Model (iForm with Legendre Model)
 ========================================================
-type: incomplete
+type: exclaim
 
  iForm with Legendre Model, still needs updated
  
@@ -684,13 +686,17 @@ type: incomplete
 perturbed the data to see robustness of the model more
 
 
-Application
+Application 2 (Mei Trees)
 ========================================================
-type: incomplete
+type: exclaim
+incremental: true
 
-Comparison of results from running the model this way
+```{r, echo = FALSE}
+wb <- loadWorkbook("MeiTreeOutput.xlsx")
+func_out <- readWorksheet(wb, sheet = "functionalOutput")
+kable(func_out)
+```
 
-Mei Trees results with running functional model
 
 
 Application
@@ -717,7 +723,7 @@ flexible model, can handle other growth equations or biologically relevant funct
 
 Future Aims
 ========================================================
-type: incomplete
+type: exclaim
 
  - Aim 1
 incorporate other error structures and mathematical functions that are biologically meaningful
@@ -738,7 +744,15 @@ incorporate other error structures and mathematical functions that are biologica
 
 Referneces
 ========================================================
-type: incomplete
+type: exclaim
+
+ 1. Taylor and Ehrenreich 2014
+ 2. Lim and Hastie 2014
+ 3. Bien et al 2013
+ 4. Wang 2012
+ 5. Wnag and Leng 2015
+ 6. Fan and Lv 2008
+ 7. Rockman et al 2010
 
 Acknowledgments
 ========================================================

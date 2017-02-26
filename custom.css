@@ -68,6 +68,10 @@ tr:nth-child(even) {
 }
 
 .exclaim .reveal h3 {
+  color: white;
+}
+
+.exclaim .reveal h4 {
   color: black;
 }
 
