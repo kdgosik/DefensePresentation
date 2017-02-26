@@ -29,7 +29,7 @@ type: exclaim
 
 Genotype-Phenotype Map
 ========================================================
-type: exclaim
+type: incomplete
 
 <div class="midcenter" style="margin-left:-300px; margin-top:-300px;">
 <img src='images/SystemsMapping.png' width="120%" height=100%> </img>
@@ -111,18 +111,19 @@ $\mathcal{S}$ -  Solution Set
 $\mathcal{T}$ - True Model  
 $\mathcal{F}$ - The Full Model
 
-Generic Model and Notation
+Assume a Linear Model
 ========================================================
-type: incomplete
+type: exclaim
 
-Assume a linear model
-
+<br>
 $$
 \begin{equation}
 Y_i = \mathbf{X_i}^T\beta + \epsilon_i
 \end{equation}
 $$
-Where $(\mathbf{X_i}, Y_i)$ are independent observations
+<br>
+Where $(\mathbf{X_i}, Y_i)$ are independent observations  
+<br>
 $$
 \epsilon \sim N(0, \sigma^2)
 $$  
@@ -132,12 +133,10 @@ $$
 
 
 
-Motivation
+FORWARD REGRESSION METHOD
 ========================================================
 type: incomplete
 
- FORWARD REGRESSION METHOD
- 
  - Algorithm
   - Step 1: (Initialization) Set $\mathcal{S}^{(0)} = \emptyset$
   - Step 2: (Forward Regression)
@@ -150,13 +149,11 @@ type: incomplete
   - Step 3: (Solution Path). Iterating Step for n times, which leads to a total of n nested candidate models.  We then collect those models by a solution path $\mathbb{S} = \{\mathcal{S}^{(k)}: 1 \le k \le n\}$
     
 
-Motivation
+FORWARD REGRESSION METHOD
 ========================================================
 type: incomplete
-
- FORWARD REGRESSION METHOD
  
- - Assumptions (properties) Standard technical conditions are needed
+Assumptions (properties) Standard technical conditions are needed to show screening consistency of forward regression
  
  - (C1) Normality assumption.  Assume that both X and $\epsilon$ follow normal distributions.
  - (C2) Covariance matrix: $\lambda_{min}(\mathbf{A}) and \lambda_{max}(\mathbf{A})$ represent, respectively the smallest and largest eigenvalues of an arbitrary positive definite matrix $\Sigma$.  We assume that there exist two positive constants $0 \lt \tau_{min} \lt \tau_{max} \lt \infty$, such that $2\tau_{min} \lt \lambda_{min}(\Sigma) \lt \lambda_{max}(\Sigma) \lt \frac{1}{2}\tau_{max}$/
@@ -166,22 +163,18 @@ type: incomplete
 
 
 
-Motivation
-========================================================
-type: incomplete
-
 Screening Consistency
+========================================================
+type: incomplete
 
-Note that, it is unrealistic to require $\mathcal{T} \in \mathcal{S}$ because this is
-not guaranteed even in the fixed dimension situation. However,
-it is indeed possible to have $\mathcal{T} \subset \mathcal{S}^{(k)}$ for some 1 ≤ k ≤ n (Fan
-and Lv 2008). Otherwise, there exists at least one relevant predictor
-completely missed by the solution path $\mathcal{S}$.
+Note that, it is unrealistic to require $\mathcal{T} \in \mathcal{S}$ because this is not guaranteed even in the fixed dimension situation. However, it is indeed possible to have $\mathcal{T} \subset \mathcal{S}^{(k)}$ for some 1 ≤ k ≤ n (Fan and Lv 2008). Otherwise, there exists at least one relevant predictor completely missed by the solution path $\mathcal{S}$.
 
 
 Motivation
 ========================================================
 type: incomplete
+
+Lemma 3 and Lemma 4
 
 solution path $\mathcal{S}$ to be screening consistent, if  
 $$P(\mathcal{T} \subset \mathcal{S}^{(k)} \in \mathcal{S} for some 1 \le k \le n) \rightarrow 1$$
@@ -192,11 +185,6 @@ $$P(\mathcal{T} \subset \mathcal{S}^{([K \nu n^{2\xi_0 + 4\xi_{min}}])}) \righta
 within
 $O(n^{2\xi_0 + 4\xi_{min}})$ steps which is much smaller than the samples size, n under (C4).
  
-
-
-
-
-
 
 Background
 ========================================================
@@ -263,7 +251,7 @@ Model Theoretical Results
 ========================================================
 type: incomplete
 
-Lemmas 1 - 10 
+Lemmas 1 - 10 (Mostly 3 and 4)
 Theorem 2
 
 show it holds for all three scenarios
@@ -344,8 +332,7 @@ type: incomplete
 
 Show Results from HigherOrder Simulation results comparing all models
   - show for different heredity structures
-    - leave out anti-heredity
-    - leave out only interaction model
+
 
 
 Simulation Results
@@ -358,14 +345,16 @@ second simulation results of different heredity structure
 Application 1 (C Elegans)
 ========================================================
 type: incomplete
+incremental: true
+
+herediabilty calc as tooltip?
 
 <div class="midcenter" style="margin-left:-300px; margin-top:-300px;">
 <img src='images/OutputTable_HighDeQTL.png'> </img>
 </div>
 
 <div class="footer" style="margin-top:-150px;font-size:80%;">
-This text is my footer text<br>
-Normally, the top of the text block would appear 90% of the way down the slide (i.e., at the bottom), because that is how the 'top' property is defined in the 'footer' style. However this particular footer wraps onto multiple lines, so we shift it up by specifying a negative value for the 'margin-top' property.</div>
+Maybe just remove footer</div>
 
 
 Application 1 (C Elegans)
@@ -383,16 +372,61 @@ type: incomplete
 Application 2 (Mei Trees)
 ========================================================
 type: incomplete
+incremental: true
 
 Mei tree comparison between running the order-2 compared to the order-3 version of the iForm selection
 
+<table>
+  <tr>
+    <th>Company</th>
+    <th>Contact</th>
+    <th>Country</th>
+  </tr>
+  <tr>
+    <td>Alfreds Futterkiste</td>
+    <td>Maria Anders</td>
+    <td>Germany</td>
+  </tr>
+  <tr>
+    <td>Centro comercial Moctezuma</td>
+    <td>Francisco Chang</td>
+    <td>Mexico</td>
+  </tr>
+  <tr>
+    <td>Ernst Handel</td>
+    <td>Roland Mendel</td>
+    <td>Austria</td>
+  </tr>
+  <tr>
+    <td>Island Trading</td>
+    <td>Helen Bennett</td>
+    <td>UK</td>
+  </tr>
+  <tr>
+    <td>Laughing Bacchus Winecellars</td>
+    <td>Yoshi Tannamuri</td>
+    <td>Canada</td>
+  </tr>
+  <tr>
+    <td>Magazzini Alimentari Riuniti</td>
+    <td>Giovanni Rovelli</td>
+    <td>Italy</td>
+  </tr>
+</table>
+
 Application 2 (Mei Trees)
 ========================================================
-type: incomplete
+type: exclaim
 
 Show results in graphical form of the different SNPs and how they impact Tree height growth over time learned from running the selection procedure.  
 
-Show Epistasis equations that were solved to figure out the epistasis.  
+$\alpha_1 =$ what SNP in the table  
+$\alpha_2 =$ what SNP in the table  
+$\alpha_3 =$ what SNP in the table  
+
+<div class="tooltip">
+<img src='images/GrowthCurveComparison.png', width = "1000px"></img>
+  <span class="tooltiptext">
 
 $\mu_{111} = \mu(t) + \alpha_1(t) + \alpha_2(t) + \alpha_3(t) + i_{12}(t) + i_{13}(t) + i_{23}(t) + i_{123}(t)$
 $\mu_{112} = \mu(t) + \alpha_1(t) + \alpha_2(t) - \alpha_3(t) + i_{12}(t) - i_{13}(t) - i_{23}(t) - i_{123}(t)$
@@ -403,6 +437,15 @@ $\mu_{212} = \mu(t) - \alpha_1(t) + \alpha_2(t) - \alpha_3(t) - i_{12}(t) + i_{1
 $\mu_{221} = \mu(t) - \alpha_1(t) - \alpha_2(t) + \alpha_3(t) + i_{12}(t) - i_{13}(t) - i_{23}(t) + i_{123}(t)$
 $\mu_{222} = \mu(t) - \alpha_1(t) - \alpha_2(t) - \alpha_3(t) + i_{12}(t) + i_{13}(t) + i_{23}(t) - i_{123}(t)$
 
+</span>
+</div>
+
+
+Application 2 (Mei Trees)
+========================================================
+type: incomplete
+
+Show Epistasis equations that were solved to figure out the epistasis.  
 Show the epistasis graph. 
 
 $$i_{12}(t) = [(\mu_{111}(t) + \mu_{112}(t) + \mu_{221}(t) + \mu_{222}(t)) - (\mu_{121}(t) + \mu_{122}(t) + \mu_{211}(t) + \mu_{212}(t))]$$
