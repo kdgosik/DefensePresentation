@@ -42,12 +42,12 @@ Genotype-Phenotype mapping of various quantitative trait loci
 
 Experimental Design
 ========================================================
-type: exclaim
+type: incomplete
 
 <small>
 Suppose that our data contains n progeny, each of which is genotyped by p markers, such as single nucleotide polymorphisms (SNPs), distributed over different chromosomes
 </small>
-
+**update picture**
 <div class="midcenter" style="margin-left:-500px; margin-top:0px;">
 <img src='images/SNP_Picture.png' style="background-color:transparent; border:0px; box-shadow:none;"> </img>
 </div>
@@ -57,36 +57,16 @@ Suppose that our data contains n progeny, each of which is genotyped by p marker
 <br>
 $$
 \begin{equation}
-Y_i = \mathbf{X_i}^T\beta + \epsilon_i
+Phenotype_i = \mathbf{SNP_i}^T\beta_j + \epsilon_i \\
+for~j~in~1,\dots,p
 \end{equation}
 $$
 <br>
-Where $(\mathbf{X_i}, Y_i)$ are independent observations  
+Where $~\beta_j~$ are the genetic/epistatic effects  
 <br>
 $$
-\epsilon \sim N(0, \sigma^2)
+\epsilon_i \sim N(0, \sigma^2)
 $$  
-$$
-E(Y_i) = 0~~and~~Var(Y_i) = 1
-$$
-
-
-
-Genetic Interactions
-========================================================
-type: exclaim
-
-Genetic interactions (sometimes referred to as epistatic
-interactions) contribute to many complex traits.  Despite widespread recognition of this point,
-relatively little is known about the specific forms of genetic interactions that are important to heritable phenotypic
-variation. To date, researchers have mainly reported genetic interactions involving only two loci. However, this emphasis on gene–gene interactions over highr-order genetic interactions (HGIs) involving three or more loci is rooted in technical issues, rather than biology. [[1]](#/48)
-
-<div class="midcenter" style="margin-left:150px; margin-top:150px;">
-<img src='images/EpistasisScissors.png' height="200" widith="200" style="background-color:transparent; border:0px; box-shadow:none;"> </img>
-<footer>
-Epistatic Effects Work Like Scissors
-</footer>
-</div>
 
 
 Important Considerations 
@@ -168,7 +148,7 @@ Assumptions for standard technical conditions needed to show screening consisten
 
 Screening Consistency
 ========================================================
-type: exclaim
+type: incomplete
 <small>
 Note that, it is unrealistic to require $\mathcal{T} \in \mathcal{S}$ because this is not guaranteed even in the fixed dimension situation. However, it is indeed possible to have $\mathcal{T} \subset \mathcal{S}^{(k)}$ for some 1 ≤ k ≤ n [[6]](#/48). Otherwise, there exists at least one relevant predictor completely missed by the solution path $\mathcal{S}$.
 
@@ -184,11 +164,23 @@ within
 $O(n^{2\xi_0 + 4\xi_{min}})$ steps which is much smaller than the samples size, n under (C4).
 </small> 
 
+
 Genetic Interactions
 ========================================================
 type: exclaim
 
-Move genetic interaction slide here
+<small>
+ - Referred to as epistatic interactions, they contribute to many complex traits.  
+ - Relatively little is known about the specific forms of genetic interactions that are important to heritable phenotypic variation.
+ - Mainly reported genetic interactions involving only two loci.
+   - Emphasis on gene–gene interactions over highr-order genetic interactions (HGIs) involving three or more loci is rooted in technical issues, rather than biology. [[1]](#/48)
+</small>
+<div class="midcenter" style="margin-left:150px; margin-top:150px;">
+<img src='images/EpistasisScissors.png' height="200" widith="200" style="background-color:transparent; border:0px; box-shadow:none;"> </img>
+<footer>
+Epistatic Effects Work Like Scissors
+</footer>
+</div>
 
 
 Marginality
@@ -324,26 +316,30 @@ Wang (2009) showed its selection consistency for FS under ultra-high dimensional
 
 Simulation (truth obeys strong heredity)
 ========================================================
-type: exclaim
+type: incomplete
 
+<small>
 
-|Model                |T1_tpr |T1_tnr |T1_fpr |T1_fnr |T2_tpr |T2_tnr |T2_fpr |T2_fnr |T3_tpr |T3_tnr |T3_fpr |T3_fnr | Train_MSE| Train_Rsq| Test_MSE|  Test_Rsq|RunTime |
-|:--------------------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|---------:|---------:|--------:|---------:|:-------|
-|forward_select       |1.000  |0.999  |0.001  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  3.329502| 0.7272740| 3.490177| 0.7109370|0.757   |
-|iform_order_2_weak   |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  1.127564| 0.9070330| 1.251540| 0.8950090|5.896   |
-|iform_order_2_strong |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  1.101721| 0.9091120| 1.197525| 0.8998780|1.557   |
-|forward_select_2     |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  1.085821| 0.9104500| 1.198211| 0.8998700|25.481  |
-|forward_select_3     |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  0.991863| 0.9183780| 1.121104| 0.9062750|471.881 |
-|iform_order_3_weak   |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  1.020279| 0.9158710| 1.135335| 0.9045870|11.346  |
-|iform_order_3_strong |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  0.967602| 0.9202320| 1.060216| 0.9114060|1.872   |
-|glinternet           |1.000  |0.559  |0.441  |0.000  |1.000  |0.982  |0.018  |0.000  |0.000  |1.000  |0.000  |1.000  |  1.245551| 0.8980079| 1.445600| 0.8801184|208.167 |
-|hierNet              |1.000  |0.697  |0.303  |0.000  |1.000  |0.976  |0.024  |0.000  |0.000  |1.000  |0.000  |1.000  |  0.906063| 0.9253410| 1.421482| 0.8820710|27.521  |
-|Oracle               |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |  0.952642| 0.9214670| 1.050142| 0.9123130|NA      |
+|Model                |T1_tpr |T1_tnr |T1_fpr |T1_fnr |T2_tpr |T2_tnr |T2_fpr |T2_fnr |T3_tpr |T3_tnr |T3_fpr |T3_fnr | Train_MSE| Train_Rsq| Test_MSE| Test_Rsq|RunTime |
+|:--------------------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|---------:|---------:|--------:|--------:|:-------|
+|forward_select       |1.000  |0.999  |0.001  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.330|     0.727|    3.490|    0.711|0.757   |
+|iform_order_2_weak   |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.128|     0.907|    1.252|    0.895|5.896   |
+|iform_order_2_strong |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.102|     0.909|    1.198|    0.900|1.557   |
+|forward_select_2     |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.086|     0.910|    1.198|    0.900|25.481  |
+|forward_select_3     |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     0.992|     0.918|    1.121|    0.906|471.881 |
+|iform_order_3_weak   |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.020|     0.916|    1.135|    0.905|11.346  |
+|iform_order_3_strong |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     0.968|     0.920|    1.060|    0.911|1.872   |
+|glinternet           |1.000  |0.559  |0.441  |0.000  |1.000  |0.982  |0.018  |0.000  |0.000  |1.000  |0.000  |1.000  |     1.246|     0.898|    1.446|    0.880|208.167 |
+|hierNet              |1.000  |0.697  |0.303  |0.000  |1.000  |0.976  |0.024  |0.000  |0.000  |1.000  |0.000  |1.000  |     0.906|     0.925|    1.421|    0.882|27.521  |
+|Oracle               |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |     0.953|     0.921|    1.050|    0.912|NA      |
+</small>
+
 
 Simulation (truth obeys weak heredity)
 ========================================================
-type: exclaim
+type: incomplete
 
+<small>
 
 |Model                |T1_tpr |T1_tnr |T1_fpr |T1_fnr |T2_tpr |T2_tnr |T2_fpr |T2_fnr |T3_tpr |T3_tnr |T3_fpr |T3_fnr | Train_MSE| Train_Rsq| Test_MSE| Test_Rsq|RunTime |
 |:--------------------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|---------:|---------:|--------:|--------:|:-------|
@@ -357,11 +353,14 @@ type: exclaim
 |glinternet           |1.000  |0.469  |0.531  |0.000  |1.000  |0.980  |0.020  |0.000  |0.000  |1.000  |0.000  |1.000  |  0.905914|  0.926629| 1.424976| 0.883336|29.975  |
 |hierNet              |1.000  |0.657  |0.343  |0.000  |1.000  |0.973  |0.027  |0.000  |0.000  |1.000  |0.000  |1.000  |  0.856364|  0.930865| 1.412004| 0.884118|33.302  |
 |Oracle               |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |  0.940407|  0.923918| 1.034358| 0.914689|NA      |
+</small>
+
 
 Simulation (truth is anti-heredity)
 ========================================================
-type: exclaim
+type: incomplete
 
+<small>
 
 |Model                |T1_tpr |T1_tnr |T1_fpr |T1_fnr |T2_tpr |T2_tnr |T2_fpr |T2_fnr |T3_tpr |T3_tnr |T3_fpr |T3_fnr | Train_MSE| Train_Rsq| Test_MSE| Test_Rsq|RunTime |
 |:--------------------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|---------:|---------:|--------:|--------:|:-------|
@@ -375,11 +374,14 @@ type: exclaim
 |glinternet           |1.000  |0.290  |0.710  |0.000  |1.000  |0.971  |0.029  |0.000  |0.000  |1.000  |0.000  |1.000  |  0.844189|  0.930543| 1.577582| 0.871187|26.564  |
 |hierNet              |1.000  |0.142  |0.858  |0.000  |1.000  |0.915  |0.085  |0.000  |0.000  |1.000  |0.000  |1.000  |  0.306779|  0.974754| 2.215589| 0.818759|3.417   |
 |Oracle               |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |  0.951558|  0.921322| 1.031376| 0.915384|NA      |
+</small>
+
 
 Simulation (truth is constructed of pure interactions)
 ========================================================
-type: exclaim
+type: incomplete
 
+<small>
 
 |Model                |T1_tpr |T1_tnr |T1_fpr |T1_fnr |T2_tpr |T2_tnr |T2_fpr |T2_fnr |T3_tpr |T3_tnr |T3_fpr |T3_fnr | Train_MSE| Train_Rsq| Test_MSE|   Test_Rsq|RunTime |
 |:--------------------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|---------:|---------:|--------:|----------:|:-------|
@@ -393,22 +395,22 @@ type: exclaim
 |glinternet           |NaN    |0.429  |0.571  |NaN    |1.000  |0.983  |0.017  |0.000  |0.000  |1.000  |0.000  |1.000  |  1.002329| 0.6991235| 1.444997|  0.5614912|145.078 |
 |hierNet              |NaN    |0.147  |0.853  |NaN    |1.000  |0.955  |0.045  |0.000  |0.000  |1.000  |0.000  |1.000  |  0.672495| 0.8021830| 1.758235|  0.4666160|4.491   |
 |Oracle               |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |  0.968410| 0.7132750| 1.021514|  0.6886360|NA      |
+</small>
 
 
-
-Application 1 (C Elegans)
+Application 1 (C Elegans) Picture of Celegans Genome
 ========================================================
-type: exclaim
+type: incomplete
 
  - To genetically dissect the causes of different variability among C. elegans traits, transcript abundances of 20,000 gene transcripts were measured by microarray in developmentally synchronized young adult hermaphrodites of 208 recombinant inbred  advanced intercross lines from a cross between the laboratory strain, N2, and a wild isolate from Hawaii, CB485618
 
- - Microarray data preprocessed through a normal–exponential convolution background correction and were normalized using quantile standardization  [[7]](#/48)
+ - Microarray data preprocessed through a normal–exponential convolution background correction and were normalized using quantile standardization  Rockman et al 2010
 
 
 
 Application 1 (C Elegans)
 ========================================================
-type: exclaim
+type: incomplete
 incremental: true
 
 <div class="midcenter" style="margin-left:-300px; margin-top:-300px;">
@@ -418,7 +420,7 @@ incremental: true
 
 Application 1 (C Elegans)
 ========================================================
-type: exclaim
+type: incomplete
 
 <div class="midecenter" style="margin-left:-300px; margin-top:-300px;">
 <img src='images/iForm_Network_Chr1.jpeg'> </img>
@@ -430,7 +432,7 @@ type: exclaim
 
 Application 2 (Mei Trees)
 ========================================================
-type: exclaim
+type: incomplete
 incremental: true
 
 
@@ -446,7 +448,7 @@ incremental: true
 
 Application 2 (Mei Trees)
 ========================================================
-type: exclaim
+type: incomplete
 incremental: true
 
 
@@ -469,7 +471,7 @@ incremental: true
 
 Application 2 (Mei Trees)
 ========================================================
-type: exclaim
+type: incomplete
 
 Show results in graphical form of the different SNPs and how they impact Tree height growth over time learned from running the selection procedure.  
 <small>
@@ -497,7 +499,7 @@ $\mu_{222} = \mu(t) - \alpha_1(t) - \alpha_2(t) - \alpha_3(t) + i_{12}(t) + i_{1
 
 Application 2 (Mei Trees)
 ========================================================
-type: exclaim
+type: incomplete
 
 <div class="tooltip">
 <img src='images/EpistasisComparison.png', width = "1000px"></img>
@@ -514,7 +516,7 @@ $$i_{123}(t) =  [(\mu_{111}(t) + \mu_{122}(t) + \mu_{212}(t) + \mu_{122}(t)) - (
 
 Mei Tree as Motivation
 ========================================================
-type: exclaim
+type: incomplete
 
 Previous results were from pre-fitted growth curves fit to each tree height, following the asymptotic logistic growth curve.  
 
@@ -524,7 +526,7 @@ Use Mei Tree results and data to set up motivation for functional response varia
 
 Background of Functional Response
 ========================================================
-type: exclaim
+type: incomplete
 
  - Regression as Linear Combination of Basis Functions
  - Legendre Polynomials to model genetic effect of each SNP over time
@@ -538,7 +540,7 @@ Linear regression when there is a certain degree of correlation between the resi
 
 Generalized Least Squares
 ========================================================
-type: exclaim
+type: incomplete
 
 [GLS](https://en.wikipedia.org/wiki/Generalized_least_squares)
 
@@ -551,7 +553,7 @@ AR(1) model assumed for our purposes.
 
 Legendre Polynomials
 ========================================================
-type: exclaim
+type: incomplete
 
  - Orthogonal and therefore variables will not be correlated
  - variety of fits up to the order of the researcher's choosing
@@ -573,37 +575,32 @@ $$
 
 <img src="DefensePresentation.Rproj-figure/Legendre-fig-1.png" title="First 10 Legendre Polynomials" alt="First 10 Legendre Polynomials" width="80%" style="display: block; margin: auto;" />
 
-Legendre Polynomials
-========================================================
-type: exclaim
-
-show toy example of how the polynomials could model the genetic effect well
-
 
 Legendre Polynomials
 ========================================================
-type: exclaim
+type: incomplete
 
 <img src='images/GrowthCurveExample.png', width = "1000px"> 
 
 
 Legendre Polynomials
 ========================================================
-type: exclaim
-
-<img src='images/LegendreFit.png', width = "1000px"> 
-
-
-Legendre Polynomials
-========================================================
-type: exclaim
+type: incomplete
 
 <img src='images/ExampleDataGrowthCurve.png', width = "1000px"> 
 
 
+Legendre Polynomials
+========================================================
+type: incomplete
+
+<img src='images/LegendreFit.png', width = "1000px"> 
+
+
+
 Generalized Least Squares
 ========================================================
-type: exclaim
+type: incomplete
 
 We have assumed that $$var(\epsilon) = \sigma^2I$$ when the response is static but if we have correlated errors like when we have repeated measurements over time $$var(\epsilon) = \sigma^2\Sigma$$ where sigma^2 is unknown but Sigma is known.  We can use Generalized least squares, Instead of minimizing the ordinary least squares estimate we have to find the arg minimum of 
 $$ (y - X\beta)^T\Sigma^{-1}(y - X\beta) $$
@@ -632,7 +629,7 @@ $var(\hat\beta) = (X^T\Sigma^{-1}X)^{-1}\sigma^2$
 
 iForm with Legendre Model
 ========================================================
-type: exclaim
+type: incomplete
 
 $$ \alpha_j(t) = (L_0(t), L_1(t), ... , L_s(t))*(u_{j0}, u_{j1},...,u_{js})^T $$
 $$ \beta_j(t) = (L_0(t), L_1(t), ... , L_{s'}(t))*(v_{j0}, v_{j1},...,v_{js'})^T $$
@@ -644,7 +641,7 @@ $y(t) = \mu(t) + \sum_{j=1}^{J}\alpha_j(t)\xi_j + \sum_{k=1}^{K}\beta_k(t)\zeta_
  
  Model (iForm with Legendre Model)
 ========================================================
-type: exclaim
+type: incomplete
 
  iForm with Legendre Model, still needs updated
  
@@ -672,19 +669,13 @@ Simulation Results
 ========================================================
 type: incomplete
 
-initial results by 100 replications
+100% screening consistent but also fitted up to cutoff amount in algorithm  
 
-
-Simulation Results
-========================================================
-type: incomplete
-
-perturbed the data to see robustness of the model more
 
 
 Application 2 (Mei Trees)
 ========================================================
-type: exclaim
+type: incomplete
 incremental: true
 
 
@@ -740,7 +731,7 @@ flexible model, can handle other growth equations or biologically relevant funct
 
 Future Aims
 ========================================================
-type: exclaim
+type: incomplete
 
  - Aim 1
 incorporate other error structures and mathematical functions that are biologically meaningful
