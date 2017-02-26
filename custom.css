@@ -1,0 +1,98 @@
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.exclaim .reveal .state-background {
+  background: #96A2B6;
+} 
+
+
+.exclaim .reveal h1 {
+  color: white;
+}
+
+.exclaim .reveal h2 {
+  color: white;
+}
+
+.exclaim .reveal h3 {
+  color: black;
+}
+
+.exclaim .reveal p {
+  color: black;
+}
+
+.exclaim .reveal div {
+  color: black;
+}
+
+.small-code pre code {
+  font-size: 1em;
+}
+
+.footer {
+    color: black;
+    background: white; /*#E8E8E8;*/
+    position: fixed;
+    top: 90%;
+    text-align:center;
+    width:100%;
+}
+
+.midcenter {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
+
+/* Mark slides as incomplete to spot them easier */
+.incomplete {
+	content: 'INCOMPLETE';
+	font-weight: bold;
+	position: absolute;
+	top: 10%;
+	left: 10%;
+	padding: .1em .4em 0;
+	border: .1em solid;
+	color: #FF0000;
+	font-size: 140%;
+	border-radius: .2em;
+	transform: rotate(15deg);
+}

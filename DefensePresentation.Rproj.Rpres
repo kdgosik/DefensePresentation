@@ -2,23 +2,61 @@ STATISTICAL MODELS FOR HIGH DIMENSIONAL SCREENING OF GENETIC AND EPIGENETIC EFFE
 ========================================================
 author: Kirk Gosik
 date: 02/27/2017
+css: custom.css
 autosize: true
 transition: fade
+type: exclaim
 
-Motivation
+<div class="midcenter" style="margin-left:0px; margin-top:0px;">
+<img src="images/PennStateCollegeOfMedicine.png" style="background-color:transparent; border:0px; box-shadow:none;"> </img>
+</div>
+
+
+Background
+========================================================
+type: exclaim
+
+- High Throughput Data 
+  - Biotechnologies that continually create large scale and complex data
+- Biological System
+  - Use entire system when predicting a phenotype
+  - Network of interaction effects
+     - Gene-gene interactions
+     - DNA Methylation Analysis
+     - Gene-environment interactions
+- Statistical Models and analysis are playing an increasing role in  mapping and identifying important quantitative trait loci and other genetic traits
+
+
+Genotype-Phenotype Map
+========================================================
+type: exclaim
+
+<div class="midcenter" style="margin-left:-300px; margin-top:-300px;">
+<img src='images/SystemsMapping.png' width="120%" height=100%> </img>
+</div>
+
+<div class="footer" style="margin-top:-150px;font-size:80%;">
+Genotype-Phenotype mapping of various quantitative trait loci</div>
+
+
+
+Genetic Interactions
 ========================================================
 type: incomplete
 
-- High Throughput data 
-  - new biotechnologies that continually create this type of data
-- Biological System
-  - Use entire system when predicting a phenotype
-  - network of interaction effects
-  - Different types of interactions
-    - gene-gene interactions (epistasis)
-    - DNA Methylation Analysis
-    - gene-environment interactions
-- Statistical Models and analysis are playing an increasing role in  mapping and identifying important quantitative trait loci and other genetic traits
+**HGIs**
+Genetic interactions (sometimes referred to as epistatic
+interactions) contribute to many complex traits (see Glossary).
+Despite widespread recognition of this point [1–6],
+relatively little is known about the specific forms of genetic
+interactions that are important to heritable phenotypic
+variation. To date, researchers have mainly reported genetic
+interactions involving only two loci (e.g., [7–11]).
+However, this emphasis on gene–gene interactions over
+HGIs involving three or more loci (Figure 1) is rooted in
+technical issues, rather than biology.
+
+
 
 
 Motivation
@@ -26,28 +64,11 @@ Motivation
 type: incomplete
 
 <div class="midcenter" style="margin-left:-300px; margin-top:-300px;">
-<img src='images/SystemsMapping.png'> </img>
+<img src='images/EpistasisScissors.png' style="background-color:transparent; border:0px; box-shadow:none;"> </img>
 </div>
 
-<div class="footer" style="margin-top:-150px;font-size:80%;">
-This text is my footer text<br>
-Normally, the top of the text block would appear 90% of the way down the slide (i.e., at the bottom), because that is how the 'top' property is defined in the 'footer' style. However this particular footer wraps onto multiple lines, so we shift it up by specifying a negative value for the 'margin-top' property.</div>
-
-
-Motivation
-========================================================
-type: incomplete
-
-Variable selection is usually implemented in order to handle the high dimensionality of the data.  Many techniques exist including,
-
- - LASSO
- - SCAD
- - Elasticnet
- - Dantzig selector 
- 
- Interaction selection Methods
- - Glinternet (TREVOR HASTIE)
- - hierNet (Robert Tibshirani)
+<div class="footer" style="margin-top:0px;font-size:80%;">
+Epistasis Works Like Scissors</div>
 
 
 
@@ -60,9 +81,26 @@ type: incomplete
 
 
 
-Generic Model and Notation
+
+Motivation
 ========================================================
 type: incomplete
+
+<h3> Variable selection is usually implemented in order to handle the high dimensionality of the data.  Many techniques exist including, </h3>
+
+ - LASSO
+ - SCAD
+ - Elasticnet
+ - Dantzig selector 
+ 
+<h3> Interaction selection Methods </h3>
+ - Glinternet (TREVOR HASTIE)
+ - hierNet (Robert Tibshirani)
+
+
+Notation
+========================================================
+type: exclaim
 
 $\mathcal{P_1}$ - main effects predictors  
 $\mathcal{P_2}$ - interaction effects predictors  
@@ -158,21 +196,6 @@ $O(n^{2\xi_0 + 4\xi_{min}})$ steps which is much smaller than the samples size, 
 
 
 
-Background
-========================================================
-type: incomplete
-
-**HGIs**
-Genetic interactions (sometimes referred to as epistatic
-interactions) contribute to many complex traits (see Glossary).
-Despite widespread recognition of this point [1–6],
-relatively little is known about the specific forms of genetic
-interactions that are important to heritable phenotypic
-variation. To date, researchers have mainly reported genetic
-interactions involving only two loci (e.g., [7–11]).
-However, this emphasis on gene–gene interactions over
-HGIs involving three or more loci (Figure 1) is rooted in
-technical issues, rather than biology.
 
 
 Background
@@ -322,7 +345,7 @@ type: incomplete
 Show Results from HigherOrder Simulation results comparing all models
   - show for different heredity structures
     - leave out anti-heredity
-    - leave out only interaction moodel
+    - leave out only interaction model
 
 
 Simulation Results
@@ -412,7 +435,7 @@ Use Mei Tree results and data to set up motivation for functional response varia
 
 
 
-Background of Functional Reponse
+Background of Functional Response
 ========================================================
 type: incomplete
 
@@ -449,13 +472,15 @@ type: incomplete
  -- saves on computational cost and time over using splines or other basis functions learned from the data
  
 
-$$\begin{equation}
+$$
+\begin{equation}
 \begin{split}
 P_n(x) & = \frac{1}{2^n}\sum_{k=0}^{n}{{n}\choose{k}}^2(x-1)^{n-k}(x+1)^k \\
 & = \sum_{k=0}^{n}{{n}\choose{k}}{{-n-1}\choose{k}}{\left(\frac{1-x}{2}\right)}^k \\
 & = 2^{-n}\sum_{k=0}^{n} x^k {{n}\choose{k}}{{\frac{n+k+1}{2}}\choose{k}} \\
 \end{split}
-\end{equation}$$
+\end{equation}
+$$
 
 
 
@@ -514,6 +539,27 @@ type: incomplete
 show toy example of how the polynomials could model the genetic effect well
 
 
+Legendre Polynomials
+========================================================
+type: incomplete
+
+<img src='images/GrowthCurveExample.png', width = "1000px"> 
+
+
+Legendre Polynomials
+========================================================
+type: incomplete
+
+<img src='images/LegendreFit.png', width = "1000px"> 
+
+
+Legendre Polynomials
+========================================================
+type: incomplete
+
+<img src='images/ExampleDataGrowthCurve.png', width = "1000px"> 
+
+
 Generalized Least Squares
 ========================================================
 type: incomplete
@@ -551,6 +597,33 @@ $$ \alpha_j(t) = (L_0(t), L_1(t), ... , L_s(t))*(u_{j0}, u_{j1},...,u_{js})^T $$
 $$ \beta_j(t) = (L_0(t), L_1(t), ... , L_{s'}(t))*(v_{j0}, v_{j1},...,v_{js'})^T $$
 
 $y(t) = \mu(t) + \sum_{j=1}^{J}\alpha_j(t)\xi_j + \sum_{k=1}^{K}\beta_k(t)\zeta_k + \sum_{I_1<I_2=1}^{I}\gamma_I^{aa}(t) \xi_{I_1}\xi_{I_2} + \sum_{I_1<I_2=1}^{I}\gamma_I^{ad}(t) \xi_{I_1}\zeta_{I_2} + \sum_{I_1<I_2=1}^{I} \gamma_I^{da}(t) \zeta_{I_1}\xi_{I_2} + \sum_{I_1<I_2=1}^{I} \gamma_I^{dd}(t)\zeta_{I_1}\zeta_{I_2} + \epsilon(t)$
+
+
+
+ 
+ Model (iForm with Legendre Model)
+========================================================
+type: incomplete
+
+ iForm with Legendre Model, still needs updated
+ 
+ - Algorithm
+  - Step 1: (Initialization) 
+  Set $\mathcal{S}^{(0)} = \emptyset$, $\mathcal{M}_0 = \emptyset$ and $\mathcal{C}_0 = \mathcal{P_1}$
+  
+  - Step 2: (Selection)
+    - Evaluation. In the kth step (k ≥ 1), we are given $S^{(k−1)}$. 
+    Then, for every $j \in \mathcal{F}/S^{(k−1)}$, we construct a
+    candidate model $\mathcal{M}^{(k−1)} = \mathcal{S}^{(k-1)} \cup j$. 
+    We then compute $RSS^{(k−1)}$
+    - Screen. We then find $a_k = argmin(RSS_{j}^{(k-1)})$ and update 
+    $\mathcal{S}^{(k)}=\mathcal{S}^{(k-1)} \cup {a_k}$ accordingly.
+    
+    (Selection) In the kth step with given $\mathcal{S}^{(k-1)}$, $\mathcal{C}^{k−1}$ and $\mathcal{M}^{k−1}$, forward regression is used to select one more predictor from $\mathcal{C}^{k−1}/ \mathcal{S}^{k−1}$ into the model. We add the selected one into $\mathcal{S}^{k−1}$ to get $\mathcal{S}^k$. We also update $\mathcal{C}^k$ and $\mathcal{M}^k$ if the newly selected predictor is a main effect. Otherwise, $\mathcal{C}^k = \mathcal{C}^{k−1}$ and $\mathcal{M}^k = \mathcal{M}^{k−1}$.
+    
+  - Step 3: (Solution Path). Iterating Step 2, for d times, which leads to a total of n nested candidate models.  We then collect those models by a solution path $\mathbb{S} = \{\mathcal{S}^{(k)}: 1 \le k \le n\}$
+ 
+
 
 
 
