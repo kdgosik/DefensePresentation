@@ -43,15 +43,13 @@ Genotype-Phenotype mapping of various quantitative trait loci
 
 Experimental Design
 ========================================================
-type: incomplete
+type: exclaim
 
 <small>
 Suppose that our data contains n progeny, each of which is genotyped by p markers, such as single nucleotide polymorphisms (SNPs), distributed over different chromosomes
 </small>
-**update picture**
-<div class="midcenter" style="margin-left:-500px; margin-top:0px;">
-<img src='images/SNP_Picture.png' style="background-color:transparent; border:0px; box-shadow:none;"> </img>
-</div>
+
+<img src='images/chromosome.png'> </img>
 
 ***
 
@@ -311,85 +309,85 @@ type: exclaim
 
 Simulation (truth obeys strong heredity)
 ========================================================
-type: incomplete
+type: exclaim
 
 <small>
 
-|Model                |T1_tpr |T1_tnr |T1_fpr |T1_fnr |T2_tpr |T2_tnr |T2_fpr |T2_fnr |T3_tpr |T3_tnr |T3_fpr |T3_fnr | Train_MSE| Train_Rsq| Test_MSE| Test_Rsq|RunTime |
-|:--------------------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|---------:|---------:|--------:|--------:|:-------|
-|forward_select       |1.000  |0.999  |0.001  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |      3.33|      0.73|     3.49|     0.71|0.757   |
-|iform_order_2_weak   |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |      1.13|      0.91|     1.25|     0.90|5.896   |
-|iform_order_2_strong |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |      1.10|      0.91|     1.20|     0.90|1.557   |
-|forward_select_2     |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |      1.09|      0.91|     1.20|     0.90|25.481  |
-|forward_select_3     |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |      0.99|      0.92|     1.12|     0.91|471.881 |
-|iform_order_3_weak   |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |      1.02|      0.92|     1.14|     0.90|11.346  |
-|iform_order_3_strong |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |      0.97|      0.92|     1.06|     0.91|1.872   |
-|glinternet           |1.000  |0.559  |0.441  |0.000  |1.000  |0.982  |0.018  |0.000  |0.000  |1.000  |0.000  |1.000  |      1.25|      0.90|     1.45|     0.88|208.167 |
-|hierNet              |1.000  |0.697  |0.303  |0.000  |1.000  |0.976  |0.024  |0.000  |0.000  |1.000  |0.000  |1.000  |      0.91|      0.93|     1.42|     0.88|27.521  |
-|Oracle               |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |      0.95|      0.92|     1.05|     0.91|NA      |
+|Model                |T1_tpr |T1_fpr |T2_tpr |T2_fpr |T3_tpr |T3_fpr | Train_MSE| Train_Rsq| Test_MSE| Test_Rsq|RunTime |
+|:--------------------|:------|:------|:------|:------|:------|:------|---------:|---------:|--------:|--------:|:-------|
+|forward_select       |1.000  |0.001  |NA     |NA     |NA     |NA     |     3.330|     0.727|    3.490|    0.711|0.757   |
+|iform_order_2_weak   |1.000  |0.000  |0.000  |0.000  |NA     |NA     |     1.128|     0.907|    1.252|    0.895|5.896   |
+|iform_order_2_strong |1.000  |0.000  |0.000  |0.000  |NA     |NA     |     1.102|     0.909|    1.198|    0.900|1.557   |
+|forward_select_2     |1.000  |0.000  |0.000  |0.000  |NA     |NA     |     1.086|     0.910|    1.198|    0.900|25.481  |
+|forward_select_3     |1.000  |0.000  |0.000  |0.000  |0.000  |0.000  |     0.992|     0.918|    1.121|    0.906|471.881 |
+|iform_order_3_weak   |1.000  |0.000  |0.000  |0.000  |0.000  |0.000  |     1.020|     0.916|    1.135|    0.905|11.346  |
+|iform_order_3_strong |1.000  |0.000  |0.000  |0.000  |0.000  |0.000  |     0.968|     0.920|    1.060|    0.911|1.872   |
+|glinternet           |1.000  |0.441  |1.000  |0.018  |0.000  |0.000  |     1.246|     0.898|    1.446|    0.880|208.167 |
+|hierNet              |1.000  |0.303  |1.000  |0.024  |0.000  |0.000  |     0.906|     0.925|    1.421|    0.882|27.521  |
+|Oracle               |NA     |NA     |NA     |NA     |NA     |NA     |     0.953|     0.921|    1.050|    0.912|NA      |
 </small>
 
 
 Simulation (truth obeys weak heredity)
 ========================================================
-type: incomplete
+type: exclaim
 
 <small>
 
-|Model                |T1_tpr |T1_tnr |T1_fpr |T1_fnr |T2_tpr |T2_tnr |T2_fpr |T2_fnr |T3_tpr |T3_tnr |T3_fpr |T3_fnr | Train_MSE| Train_Rsq| Test_MSE| Test_Rsq|RunTime |
-|:--------------------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|---------:|---------:|--------:|--------:|:-------|
-|forward_select       |1.000  |0.999  |0.001  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.326|     0.731|    3.480|    0.716|4.355   |
-|iform_order_2_weak   |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.119|     0.910|    1.200|    0.901|8.342   |
-|iform_order_2_strong |1.000  |0.992  |0.008  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.580|     0.872|    1.707|    0.859|2.952   |
-|forward_select_2     |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.083|     0.912|    1.167|    0.904|38.872  |
-|forward_select_3     |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     0.979|     0.921|    1.089|    0.910|569.983 |
-|iform_order_3_weak   |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.003|     0.919|    1.079|    0.911|13.054  |
-|iform_order_3_strong |1.000  |0.992  |0.008  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.578|     0.872|    1.705|    0.859|2.787   |
-|glinternet           |1.000  |0.469  |0.531  |0.000  |1.000  |0.980  |0.020  |0.000  |0.000  |1.000  |0.000  |1.000  |     0.906|     0.927|    1.425|    0.883|29.975  |
-|hierNet              |1.000  |0.657  |0.343  |0.000  |1.000  |0.973  |0.027  |0.000  |0.000  |1.000  |0.000  |1.000  |     0.856|     0.931|    1.412|    0.884|33.302  |
-|Oracle               |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |     0.940|     0.924|    1.034|    0.915|NA      |
+|Model                |T1_tpr |T1_fpr |T2_tpr |T2_fpr |T3_tpr |T3_fpr | Train_MSE| Train_Rsq| Test_MSE| Test_Rsq|RunTime |
+|:--------------------|:------|:------|:------|:------|:------|:------|---------:|---------:|--------:|--------:|:-------|
+|forward_select       |1.000  |0.001  |NA     |NA     |NA     |NA     |     3.326|     0.731|    3.480|    0.716|4.355   |
+|iform_order_2_weak   |1.000  |0.000  |0.000  |0.000  |NA     |NA     |     1.119|     0.910|    1.200|    0.901|8.342   |
+|iform_order_2_strong |1.000  |0.008  |0.000  |0.000  |NA     |NA     |     1.580|     0.872|    1.707|    0.859|2.952   |
+|forward_select_2     |1.000  |0.000  |0.000  |0.000  |NA     |NA     |     1.083|     0.912|    1.167|    0.904|38.872  |
+|forward_select_3     |1.000  |0.000  |0.000  |0.000  |0.000  |0.000  |     0.979|     0.921|    1.089|    0.910|569.983 |
+|iform_order_3_weak   |1.000  |0.000  |0.000  |0.000  |0.000  |0.000  |     1.003|     0.919|    1.079|    0.911|13.054  |
+|iform_order_3_strong |1.000  |0.008  |0.000  |0.000  |0.000  |0.000  |     1.578|     0.872|    1.705|    0.859|2.787   |
+|glinternet           |1.000  |0.531  |1.000  |0.020  |0.000  |0.000  |     0.906|     0.927|    1.425|    0.883|29.975  |
+|hierNet              |1.000  |0.343  |1.000  |0.027  |0.000  |0.000  |     0.856|     0.931|    1.412|    0.884|33.302  |
+|Oracle               |NA     |NA     |NA     |NA     |NA     |NA     |     0.940|     0.924|    1.034|    0.915|NA      |
 </small>
 
 
 Simulation (truth is anti-heredity)
 ========================================================
-type: incomplete
+type: exclaim
 
 <small>
 
-|Model                |T1_tpr |T1_tnr |T1_fpr |T1_fnr |T2_tpr |T2_tnr |T2_fpr |T2_fnr |T3_tpr |T3_tnr |T3_fpr |T3_fnr | Train_MSE| Train_Rsq| Test_MSE| Test_Rsq|RunTime |
-|:--------------------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|---------:|---------:|--------:|--------:|:-------|
-|forward_select       |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.284|     0.729|    3.510|    0.714|1.005   |
-|iform_order_2_weak   |1.000  |0.996  |0.004  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.140|     0.741|    3.435|    0.719|7.866   |
-|iform_order_2_strong |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.284|     0.729|    3.510|    0.714|2.386   |
-|forward_select_2     |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.081|     0.911|    1.171|    0.904|29.095  |
-|forward_select_3     |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     0.989|     0.918|    1.095|    0.910|548.617 |
-|iform_order_3_weak   |1.000  |0.997  |0.003  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.155|     0.739|    3.448|    0.719|13.216  |
-|iform_order_3_strong |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.284|     0.729|    3.510|    0.714|2.703   |
-|glinternet           |1.000  |0.290  |0.710  |0.000  |1.000  |0.971  |0.029  |0.000  |0.000  |1.000  |0.000  |1.000  |     0.844|     0.931|    1.578|    0.871|26.564  |
-|hierNet              |1.000  |0.142  |0.858  |0.000  |1.000  |0.915  |0.085  |0.000  |0.000  |1.000  |0.000  |1.000  |     0.307|     0.975|    2.216|    0.819|3.417   |
-|Oracle               |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |     0.952|     0.921|    1.031|    0.915|NA      |
+|Model                |T1_tpr |T1_fpr |T2_tpr |T2_fpr |T3_tpr |T3_fpr | Train_MSE| Train_Rsq| Test_MSE| Test_Rsq|RunTime |
+|:--------------------|:------|:------|:------|:------|:------|:------|---------:|---------:|--------:|--------:|:-------|
+|forward_select       |1.000  |0.000  |NA     |NA     |NA     |NA     |     3.284|     0.729|    3.510|    0.714|1.005   |
+|iform_order_2_weak   |1.000  |0.004  |0.000  |0.000  |NA     |NA     |     3.140|     0.741|    3.435|    0.719|7.866   |
+|iform_order_2_strong |1.000  |0.000  |0.000  |0.000  |NA     |NA     |     3.284|     0.729|    3.510|    0.714|2.386   |
+|forward_select_2     |1.000  |0.000  |0.000  |0.000  |NA     |NA     |     1.081|     0.911|    1.171|    0.904|29.095  |
+|forward_select_3     |1.000  |0.000  |0.000  |0.000  |0.000  |0.000  |     0.989|     0.918|    1.095|    0.910|548.617 |
+|iform_order_3_weak   |1.000  |0.003  |0.000  |0.000  |0.000  |0.000  |     3.155|     0.739|    3.448|    0.719|13.216  |
+|iform_order_3_strong |1.000  |0.000  |0.000  |0.000  |0.000  |0.000  |     3.284|     0.729|    3.510|    0.714|2.703   |
+|glinternet           |1.000  |0.710  |1.000  |0.029  |0.000  |0.000  |     0.844|     0.931|    1.578|    0.871|26.564  |
+|hierNet              |1.000  |0.858  |1.000  |0.085  |0.000  |0.000  |     0.307|     0.975|    2.216|    0.819|3.417   |
+|Oracle               |NA     |NA     |NA     |NA     |NA     |NA     |     0.952|     0.921|    1.031|    0.915|NA      |
 </small>
 
 
 Simulation (truth is constructed of pure interactions)
 ========================================================
-type: incomplete
+type: exclaim
 
 <small>
 
-|Model                |T1_tpr |T1_tnr |T1_fpr |T1_fnr |T2_tpr |T2_tnr |T2_fpr |T2_fnr |T3_tpr |T3_tnr |T3_fpr |T3_fnr | Train_MSE| Train_Rsq| Test_MSE| Test_Rsq|RunTime |
-|:--------------------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|---------:|---------:|--------:|--------:|:-------|
-|forward_select       |NaN    |0.980  |0.020  |NaN    |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.316|     0.025|    3.445|   -0.039|1.177   |
-|iform_order_2_weak   |NaN    |0.972  |0.028  |NaN    |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.007|     0.115|    3.181|    0.040|5.840   |
-|iform_order_2_strong |NaN    |0.979  |0.021  |NaN    |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.294|     0.031|    3.429|   -0.034|2.081   |
-|forward_select_2     |NaN    |1.000  |0.000  |NaN    |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.117|     0.669|    1.170|    0.644|26.396  |
-|forward_select_3     |NaN    |1.000  |0.000  |NaN    |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.004|     0.703|    1.081|    0.671|530.362 |
-|iform_order_3_weak   |NaN    |0.975  |0.025  |NaN    |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.043|     0.106|    3.209|    0.032|9.461   |
-|iform_order_3_strong |NaN    |0.979  |0.021  |NaN    |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.294|     0.031|    3.429|   -0.034|2.265   |
-|glinternet           |NaN    |0.429  |0.571  |NaN    |1.000  |0.983  |0.017  |0.000  |0.000  |1.000  |0.000  |1.000  |     1.002|     0.699|    1.445|    0.561|145.078 |
-|hierNet              |NaN    |0.147  |0.853  |NaN    |1.000  |0.955  |0.045  |0.000  |0.000  |1.000  |0.000  |1.000  |     0.672|     0.802|    1.758|    0.467|4.491   |
-|Oracle               |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |     0.968|     0.713|    1.022|    0.689|NA      |
+|Model                |T1_tpr |T1_fpr |T2_tpr |T2_fpr |T3_tpr |T3_fpr | Train_MSE| Train_Rsq| Test_MSE| Test_Rsq|RunTime |
+|:--------------------|:------|:------|:------|:------|:------|:------|---------:|---------:|--------:|--------:|:-------|
+|forward_select       |NA     |0.020  |NA     |NA     |NA     |NA     |     3.316|     0.025|    3.445|   -0.039|1.177   |
+|iform_order_2_weak   |NA     |0.028  |0.000  |0.000  |NA     |NA     |     3.007|     0.115|    3.181|    0.040|5.840   |
+|iform_order_2_strong |NA     |0.021  |0.000  |0.000  |NA     |NA     |     3.294|     0.031|    3.429|   -0.034|2.081   |
+|forward_select_2     |NA     |0.000  |0.000  |0.000  |NA     |NA     |     1.117|     0.669|    1.170|    0.644|26.396  |
+|forward_select_3     |NA     |0.000  |0.000  |0.000  |0.000  |0.000  |     1.004|     0.703|    1.081|    0.671|530.362 |
+|iform_order_3_weak   |NA     |0.025  |0.000  |0.000  |0.000  |0.000  |     3.043|     0.106|    3.209|    0.032|9.461   |
+|iform_order_3_strong |NA     |0.021  |0.000  |0.000  |0.000  |0.000  |     3.294|     0.031|    3.429|   -0.034|2.265   |
+|glinternet           |NA     |0.571  |1.000  |0.017  |0.000  |0.000  |     1.002|     0.699|    1.445|    0.561|145.078 |
+|hierNet              |NA     |0.853  |1.000  |0.045  |0.000  |0.000  |     0.672|     0.802|    1.758|    0.467|4.491   |
+|Oracle               |NA     |NA     |NA     |NA     |NA     |NA     |     0.968|     0.713|    1.022|    0.689|NA      |
 </small>
 
 
@@ -439,17 +437,19 @@ type: exclaim
 
 Application 2 (Mei Trees)
 ========================================================
-type: incomplete
+type: exclaim
 
+<small>
 
-|Coefficient                           | Estimate|      SE| T.value|P.value      |
-|:-------------------------------------|--------:|-------:|-------:|:------------|
-|(Intercept)                           |  0.18285| 0.07613|   2.402|0.0174 *     |
-|AATTC_nn_np_2517_a                    |  0.40013| 0.06509|   6.147|5.13e-09 *** |
-|AATTC_nn_np_2815_a                    |  0.15792| 0.06837|   2.310|0.0221 *     |
-|CATG_nn_np_3479_a                     |  0.23433| 0.05285|   4.434|1.63e-05 *** |
-|CATG_nn_np_1284_a                     |  0.22200| 0.05313|   4.179|4.61e-05 *** |
-|AATTC_nn_np_2815_a×AATTC_lm_ll_3034_a |  0.45783| 0.09244|   4.953|1.71e-06 *** |
+|Coefficient                           | Estimate|     SE| T.value| P.value|
+|:-------------------------------------|--------:|------:|-------:|-------:|
+|(Intercept)                           |   0.1829| 0.0761|   2.402|  0.0174|
+|AATTC_nn_np_2517_a                    |   0.4001| 0.0651|   6.147|  0.0000|
+|AATTC_nn_np_2815_a                    |   0.1579| 0.0684|   2.310|  0.0221|
+|CATG_nn_np_3479_a                     |   0.2343| 0.0528|   4.434|  0.0000|
+|CATG_nn_np_1284_a                     |   0.2220| 0.0531|   4.179|  0.0000|
+|AATTC_nn_np_2815_a×AATTC_lm_ll_3034_a |   0.4578| 0.0924|   4.953|  0.0000|
+</small>
 
 
 Application 2 (Mei Trees)
@@ -457,21 +457,21 @@ Application 2 (Mei Trees)
 type: exclaim
 <small>
 
-|Coefficient                                              | Estimate|     SE| T.value|P.value      |
-|:--------------------------------------------------------|--------:|------:|-------:|:------------|
-|(Intercept)                                              |   0.1686| 0.0580|   2.906|0.00415 **   |
-|AATTC_nn_np_2517_a                                       |   0.2777| 0.0440|   6.318|2.27e-09 *** |
-|AATTC_nn_np_2815_a                                       |   0.2638| 0.0530|   4.983|1.54e-06 *** |
-|CATG_nn_np_3479_a                                        |   0.2077| 0.0347|   5.990|1.23e-08 *** |
-|CATG_nn_np_1284_a                                        |   0.0452| 0.0426|   1.060|0.29055      |
-|AATTC_nn_np_2815_a×AATTC_lm_ll_3034_a                    |   1.8257| 0.1792|  10.185|< 2e-16 ***  |
-|AATTC_nn_np_2815_a×AATTC_hk_hk_278_a                     |   0.2594| 0.0389|   6.671|3.48e-10 *** |
-|CATG_lm_ll_3153_a                                        |   0.1488| 0.0349|   4.262|3.36e-05 *** |
-|CATG_nn_np_1284_a×AATTC_nn_np_554_a                      |   0.2299| 0.0510|   4.505|1.23e-05 *** |
-|AATTC_nn_np_2815_a.AATTC_lm_ll_3034_a×AATTC_nn_np_1615_a |  -1.5171| 0.1906|  -7.960|2.39e-13 *** |
-|AATTC_nn_np_2815_a×AATTC_nn_np_929_a                     |  -0.3080| 0.0548|  -5.624|7.57e-08 *** |
-|AATTC_hk_hk_479_d                                        |   0.1604| 0.0344|   4.660|6.37e-06 *** |
-|AATTC_nn_np_2517_a×CATG_hk_hk_648_a                      |   0.1454| 0.0284|   5.118|8.33e-07 *** |
+|Coefficient                                              | Estimate|     SE| T.value| P.value|
+|:--------------------------------------------------------|--------:|------:|-------:|-------:|
+|(Intercept)                                              |   0.1686| 0.0580|   2.906|  0.0042|
+|AATTC_nn_np_2517_a                                       |   0.2777| 0.0440|   6.318|  0.0000|
+|AATTC_nn_np_2815_a                                       |   0.2638| 0.0530|   4.983|  0.0000|
+|CATG_nn_np_3479_a                                        |   0.2077| 0.0347|   5.990|  0.0000|
+|CATG_nn_np_1284_a                                        |   0.0452| 0.0426|   1.060|  0.2905|
+|AATTC_nn_np_2815_a×AATTC_lm_ll_3034_a                    |   1.8257| 0.1792|  10.185|  0.0000|
+|AATTC_nn_np_2815_a×AATTC_hk_hk_278_a                     |   0.2594| 0.0389|   6.671|  0.0000|
+|CATG_lm_ll_3153_a                                        |   0.1488| 0.0349|   4.262|  0.0000|
+|CATG_nn_np_1284_a×AATTC_nn_np_554_a                      |   0.2299| 0.0510|   4.505|  0.0000|
+|AATTC_nn_np_2815_a.AATTC_lm_ll_3034_a×AATTC_nn_np_1615_a |  -1.5171| 0.1906|  -7.960|  0.0000|
+|AATTC_nn_np_2815_a×AATTC_nn_np_929_a                     |  -0.3080| 0.0548|  -5.624|  0.0000|
+|AATTC_hk_hk_479_d                                        |   0.1604| 0.0344|   4.660|  0.0000|
+|AATTC_nn_np_2517_a×CATG_hk_hk_648_a                      |   0.1454| 0.0284|   5.118|  0.0000|
 </small>
 
 Application 2 (Mei Trees)
@@ -506,12 +506,10 @@ type: exclaim
 <div class="tooltip">
 <img src='images/EpistasisComparison.png', width = "1000px"></img>
   <span class="tooltiptext">
-
 $$i_{12}(t) = [(\mu_{111}(t) + \mu_{112}(t) + \mu_{221}(t) + \mu_{222}(t)) - (\mu_{121}(t) + \mu_{122}(t) + \mu_{211}(t) + \mu_{212}(t))]$$
 $$i_{13}(t) =  [(\mu_{111}(t) + \mu_{121}(t) + \mu_{212}(t) + \mu_{222}(t)) - (\mu_{112}(t) + \mu_{122}(t) + \mu_{211}(t) + \mu_{221}(t))]$$
 $$i_{23}(t) =  [(\mu_{111}(t) + \mu_{122}(t) + \mu_{211}(t) + \mu_{222}(t)) - (\mu_{112}(t) + \mu_{121}(t) + \mu_{212}(t) + \mu_{221}(t))]$$
 $$i_{123}(t) =  [(\mu_{111}(t) + \mu_{122}(t) + \mu_{212}(t) + \mu_{122}(t)) - (\mu_{112}(t) + \mu_{121}(t) + \mu_{211}(t) + \mu_{222}(t))]$$
-
 </span>
 </div>
 
@@ -590,7 +588,7 @@ type: exclaim
 <img src='images/LegendreFit.png', width = "1000px"> 
 
 
-iForm with Legendre Model
+iForm with Legendre Polynomials Model
 ========================================================
 type: exclaim
 
@@ -601,48 +599,23 @@ $$\beta_j(t) = (L_0(t), L_1(t), ... , L_{s'}(t))*(v_{j0}, v_{j1},...,v_{js'})^T$
 $$
 \begin{equation}
 \begin{split}
-y(t) & = \mu(t) + \sum_{j=1}^{J}\alpha_j(t)\xi_j + \sum_{k=1}^{K}\beta_k(t)\zeta_k //
-& + \sum_{I1<I2=1}^{I} \gamma_I^{aa}(t) \xi_{I1}\xi_{I2}
+y(t) = \mu(t) + \sum_{j=1}^{J}\alpha_j(t)\xi_j + \sum_{k=1}^{K}\beta_k(t)\zeta_k \\ 
++ \sum_{I_1 \lt I_2=1}^{I}\gamma_I^{aa}(t) \xi_{I_1}\xi_{I_2} + \sum_{I_1 \lt I_2=1}^{I}\gamma_I^{ad}(t) \xi_{I_1}\zeta_{I_2} \\
++ \sum_{I_1 \lt I_2=1}^{I} \gamma_I^{da}(t) \zeta_{I_1}\xi_{I_2} + \sum_{I_1 \lt I_2=1}^{I} \gamma_I^{dd}(t)\zeta_{I_1}\zeta_{I_2} + \epsilon(t)
 \end{split}
 \end{equation}
 $$
 
-
-$$
-\begin{equation}
-\begin{split}
-y(t)=\mu(t)+\sum_{j=1}^{J}\alpha_j(t)\xi_j+\sum_{k=1}^{K}\beta_k(t)\zeta_k+\sum_{I_1<I_2=1}^{I}\gamma_I^{aa}(t)\xi_{I1}\xi_{I2}+\sum_{I1<I2=1}^{I}\gamma_I^{ad}(t)\xi_{I1}\zeta_{I2}+\sum_{I1<I2=1}^{I}\gamma_I^{da}(t)\zeta_{I1}\xi_{I2}+\sum_{I_1<I_2=1}^{I}\gamma_I^{dd}(t)\zeta_{I1}\zeta_{I2}+\epsilon(t)
-\end{split}
-\end{equation}
-$$
-
-
-
- 
  Model (iForm with Legendre Model)
 ========================================================
 type: incomplete
 
- iForm with Legendre Model, still needs updated
- 
- - Algorithm
+<small>
   - Step 1: (Initialization) 
   Set $\mathcal{S}^{(0)} = \emptyset$, $\mathcal{M}_0 = \emptyset$ and $\mathcal{C}_0 = \mathcal{P_1}$
-  
-  - Step 2: (Selection)
-    - Evaluation. In the kth step (k ≥ 1), we are given $S^{(k−1)}$. 
-    Then, for every $j \in \mathcal{F}/S^{(k−1)}$, we construct a
-    candidate model $\mathcal{M}^{(k−1)} = \mathcal{S}^{(k-1)} \cup j$. 
-    We then compute $RSS^{(k−1)}$
-    - Screen. We then find $a_k = argmin(RSS_{j}^{(k-1)})$ and update 
-    $\mathcal{S}^{(k)}=\mathcal{S}^{(k-1)} \cup {a_k}$ accordingly.
-    
-    (Selection) In the kth step with given $\mathcal{S}^{(k-1)}$, $\mathcal{C}^{k−1}$ and $\mathcal{M}^{k−1}$, forward regression is used to select one more predictor from $\mathcal{C}^{k−1}/ \mathcal{S}^{k−1}$ into the model. We add the selected one into $\mathcal{S}^{k−1}$ to get $\mathcal{S}^k$. We also update $\mathcal{C}^k$ and $\mathcal{M}^k$ if the newly selected predictor is a main effect. Otherwise, $\mathcal{C}^k = \mathcal{C}^{k−1}$ and $\mathcal{M}^k = \mathcal{M}^{k−1}$.
-    
-  - Step 3: (Solution Path). Iterating Step 2, for d times, which leads to a total of n nested candidate models.  We then collect those models by a solution path $\mathbb{S} = \{\mathcal{S}^{(k)}: 1 \le k \le n\}$
- 
-
-
+  - Step 2: (Selection) In the kth step with given $\mathcal{S}^{(k-1)}$, $\mathcal{C}^{k−1}$ and $\mathcal{M}^{k−1}$, [forward regression](#/7) is used to select one more predictor from $\mathcal{C}^{k−1}/ \mathcal{S}^{k−1}$ into the model. We add the selected one into $\mathcal{S}^{k−1}$ to get $\mathcal{S}^k$. We also update $\mathcal{C}^k$ and $\mathcal{M}^k$ if the newly selected predictor is a main effect. Otherwise, $\mathcal{C}^k = \mathcal{C}^{k−1}$ and $\mathcal{M}^k = \mathcal{M}^{k−1}$
+  - Step 3: (Solution Path). Iterating Step 2, for d times, which leads to a total of n nested candidate models.  We then collect those models by a solution path $\mathbb{S}=\{\mathcal{S}^{(k)}: 1 \le k \le n\}$
+</small>
 
 
 Simulation Results
@@ -655,9 +628,9 @@ type: incomplete
 
 Application 2 (Mei Trees)
 ========================================================
-type: incomplete
-incremental: true
+type: exclaim
 
+<small>
 
 |Coefficient                                                      |  Estimate|       SE|  T.value| P.value|
 |:----------------------------------------------------------------|---------:|--------:|--------:|-------:|
@@ -684,7 +657,7 @@ incremental: true
 |CATG_lm_ll_1732_a_by_CATG_nn_np_2948_a_P0                        |   9.56873| 2.321721|  4.12139|  0.0000|
 |AATTC_hk_hk_495_a_by_CATG_lm_ll_1732_a_by_CATG_nn_np_2948_a_P0   |  -8.64983| 2.183079| -3.96222|  0.0001|
 |AATTC_nn_np_4608_a_by_CATG_lm_ll_1732_a_by_CATG_lm_ll_2787_a_P1  |  14.27351| 2.135087|  6.68521|  0.0000|
-
+</small>
 
 
 Application
@@ -730,21 +703,49 @@ incorporate other error structures and mathematical functions that are biologica
  - Aim 3
 
 
-Referneces
+References
 ========================================================
 type: exclaim
 
- 1. Taylor and Ehrenreich 2014
- 2. Lim and Hastie 2014
- 3. Bien et al 2013
- 4. Wang 2012
- 5. Wnag and Leng 2015
- 6. Fan and Lv 2008
- 7. Rockman et al 2010
+ - Taylor and Ehrenreich 2014
+ - Lim and Hastie 2014
+ - Bien et al 2013
+ - Wang 2012
+ - Wnag and Leng 2015
+ - Fan and Lv 2008
+ - Rockman et al 2010
+ - Pearson, 2006
+ - Kim et al. 2014
+ - Fairfax et al. 2014
+ - Lee et al. 2014
+ - Emilsson et al. 2008
+ - Cookson et al. 2009
+ 
+***
+ 
+ - Nica and Dermitzakis 2013
+ - Kendziorski et al. 2006
+ - Chun and Keles 2009
+ - Sun 2012;
+ - Flutre et al. 2013
+ - Li et al. 2013
+ - Cheverud and Routman 1995 
+ - Moore 2003
+ - van Eeuwijk et al. 2010
+ - Mackay 2014
+ - Wu et al. 2007
+ - Hao and Zhang 2014
+
 
 Acknowledgments
 ========================================================
 type: incomplete
+
+Advisor
+Committee
+Family
+Nursing Department
+
 
 Thank you
 ========================================================
