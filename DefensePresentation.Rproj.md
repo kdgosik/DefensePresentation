@@ -16,6 +16,7 @@ Background
 ========================================================
 type: exclaim
 
+<small>
 - High Throughput Data 
   - Biotechnologies that continually create large scale and complex data
 - Biological System
@@ -25,7 +26,7 @@ type: exclaim
      - DNA Methylation Analysis
      - Gene-environment interactions
 - Statistical Models and analysis are playing an increasing role in  mapping and identifying important quantitative trait loci and other genetic traits
-
+</small>
 
 Genotype-Phenotype Map
 ========================================================
@@ -54,7 +55,6 @@ Suppose that our data contains n progeny, each of which is genotyped by p marker
 
 ***
 
-<br>
 $$
 \begin{equation}
 Phenotype_i = \mathbf{SNP_i}^T\beta_j + \epsilon_i \\
@@ -98,7 +98,7 @@ type: exclaim
  
 <h4> Interaction selection Methods </h3>
  - Glinternet[[2]](#/48)
- - hierNet [[3]](#/48)
+ - HierNet [[3]](#/48)
 
 
 Notation
@@ -115,7 +115,7 @@ $\mathcal{T}$ - True Model
 $\mathcal{F}$ - The Full Model
 
 
-FORWARD REGRESSION METHOD
+Forward Regression Method
 ========================================================
 type: exclaim
 
@@ -132,12 +132,12 @@ Algorithm
  - Step 3: (Solution Path). Iterating Step for n times, which leads to a total of n nested candidate models.  We then collect those models by a solution path $\mathbb{S} = \{\mathcal{S}^{(k)}: 1 \le k \le n\}$
 </small>    
 
-FORWARD REGRESSION METHOD
+Forward Regression Method
 ========================================================
 type: exclaim
 
 <small>
-Assumptions for standard technical conditions needed to show screening consistency of forward regression [[4]](#/48)
+Assumptions for standard technical conditions needed to show screening consistency of forward regression (Wang 2012)
  - (C1) Normality assumption.  Assume that both X and $\epsilon$ follow normal distributions.
  - (C2) Covariance matrix: $\lambda_{min}(\mathbf{A})~and~\lambda_{max}(\mathbf{A})$ represent, respectively the smallest and largest eigenvalues of an arbitrary positive definite matrix $\Sigma$.  We assume that there exist two positive constants $0 \lt \tau_{min} \lt \tau_{max} \lt \infty$, such that $2\tau_{min} \lt \lambda_{min}(\Sigma) \lt \lambda_{max}(\Sigma) \lt \frac{1}{2}\tau_{max}$
  - (C3) Regression coefficients.  We assume that $||\beta|| \le \mathcal{C_{\beta}}$ for some constant $\mathcal{C_{\beta}} \gt 0$ and $\beta_{min} \ge \nu_{\beta}n^{\xi_{min}}$ for some $\xi_{min} \gt 0$
@@ -149,15 +149,18 @@ Assumptions for standard technical conditions needed to show screening consisten
 Screening Consistency
 ========================================================
 type: incomplete
+
 <small>
-Note that, it is unrealistic to require $\mathcal{T} \in \mathcal{S}$ because this is not guaranteed even in the fixed dimension situation. However, it is indeed possible to have $\mathcal{T} \subset \mathcal{S}^{(k)}$ for some 1 ≤ k ≤ n [[6]](#/48). Otherwise, there exists at least one relevant predictor completely missed by the solution path $\mathcal{S}$.
+Urealistic to require $\mathcal{T} \in \mathcal{S}$
+ - Not guaranteed even in the fixed dimension situation  </p>
 
-(Lemma 3 and Lemma 4)
+It is possible to have $\mathcal{T} \subset \mathcal{S}^{(k)}$ for some 1 ≤ k ≤ n  
+ - Otherwise, there exists at least one relevant predictor completely missed by the solution path $\mathcal{S}$ </p>
 
-solution path $\mathcal{S}$ to be screening consistent, if  
-$$P(\mathcal{T} \subset \mathcal{S}^{(k)} \in \mathcal{S} for some 1 \le k \le n) \rightarrow 1$$
+The solution path $\mathcal{S}$ is said to be screening consistent, if  
+$$P(\mathcal{T} \subset \mathcal{S}^{(k)} \in \mathcal{S}~for~some~1 \le k \le n) \rightarrow 1$$
 
-Theorem 1. Under model (2.1) and conditions (C1) - (C4), we have as $n \rightarrow \infty$
+Under conditions (C1) - (C4), we have as $n \rightarrow \infty$
 $$P(\mathcal{T} \subset \mathcal{S}^{([K \nu n^{2\xi_0 + 4\xi_{min}}])}) \rightarrow 1$$
 
 within
@@ -173,7 +176,7 @@ type: exclaim
  - Referred to as epistatic interactions, they contribute to many complex traits.  
  - Relatively little is known about the specific forms of genetic interactions that are important to heritable phenotypic variation.
  - Mainly reported genetic interactions involving only two loci.
-   - Emphasis on gene–gene interactions over highr-order genetic interactions (HGIs) involving three or more loci is rooted in technical issues, rather than biology. [[1]](#/48)
+ - Emphasis on gene–gene interactions over highr-order genetic interactions (HGIs) involving three or more loci is rooted in technical issues, rather than biology. (Taylor and Ehrenreich 2014)
 </small>
 <div class="midcenter" style="margin-left:150px; margin-top:150px;">
 <img src='images/EpistasisScissors.png' height="200" widith="200" style="background-color:transparent; border:0px; box-shadow:none;"> </img>
@@ -183,86 +186,61 @@ Epistatic Effects Work Like Scissors
 </div>
 
 
-Marginality
+Marginality Principle
 ========================================================
-type: incomplete
+type: exclaim
 
-Forward Selection already includes the marginality principle.  
-Relate to genetic data and the necessity of including interactions
- - iForm procedure
-  - marginality
-  - heredity (both strong and weak)
- - Higher order iForm
- - Functional Mapping iForm
- 
+It is inappropriate to model interaction terms when the main effects contributing to the interaction have either not been included or were deleted because the effects became marginal by the inclusion of the interaction effect
+
+ - Implicit in Forward Selection Procedures 
+ - SNP effects will not be removed if it becomes insignificant by inclusion of epistatic effects
+
  
 Heredity Principle
 ========================================================
-type: incomplete
+type: exclaim
 
-Why assume heredity principle?
+$\beta_{jk} \ne 0 \implies \beta_j, \beta_k \ne 0$
 
  - Statistical efficiency
  - Computational efficient
  - Cost Effective
 
 
-Model
+Interaction Model
 ========================================================
-type: incomplete
+type: exclaim
 
 $$\mathbf{Y} = \mathbf{X^T}\beta^{(1)} + \mathbf{Z^T}\beta^{(2)} + \epsilon$$
 
-Assumptions
+Updated Assumptions
  - $X_i$ and $X_jX_k$ are marginally and jointly normal
- - Constants two constants $0 \lt \tau_{min} \lt \frac{1}{4} \lt 1 \lt \tau_{max} \lt \infty$ s.t $2\tau_{min}  \lambda_{min}(\Sigma_{(1)})$
- 
+ - (C2a) There exists two constants $0 \lt \tau_{min} \lt \frac{1}{4} \lt 1 \lt \tau_{max} \lt \infty~$ s.t $\sqrt{\tau_{min}} \lt \lambda_{min}(\Sigma_{(1)}) \lt \lambda_{max}(\Sigma_{(1)}) \lt \sqrt{\tau_{max}/4}$
+ - (C4a) There exists constants $\xi$, $\xi_0$, and $\nu$ such that $log(p) \le \nu n^{\xi_{0}}$, and $\xi + 6\xi_0 + 12\xi_{min} \lt \frac{1}{2}$
 
-Model (iForm)
+
+Higher-Order Interaction Model
 ========================================================
-type: incomplete
+type: exclaim
 
- iForm, still needs updated [Go to FS Algorithm](#/7)
+$$\mathbf{Y} = \mathbf{X^T}\beta^{(1)} + \mathbf{Z^T}\beta^{(2)} + \mathbf{W^T}\beta^{(3)} + \epsilon$$
+
+Updated Assumptions
+ - $X_i$, $X_jX_k$ and $X_jX_kX_l$ are marginally and jointly normal
+ - (C2b) There exists two constants $0 \lt \tau_{min} \lt \frac{1}{4} \lt 1 \lt \tau_{max} \lt \infty~$ s.t $\sqrt{\tau_{min}} \lt \lambda_{min}(\Sigma_{(1)}) \lt \lambda_{max}(\Sigma_{(1)}) \lt \sqrt{\tau_{max}/8}$
+ - (C4b) There exists constants $\xi$, $\xi_0$, and $\nu$ such that $log(p) \le \nu n^{\xi_{0}}$, and $\xi + 6\xi_0 + 12\xi_{min} \lt \frac{1}{4}$
  
- - Algorithm
+ 
+iForm Algorithm
+========================================================
+type: exclaim
+
+<small>
   - Step 1: (Initialization) 
   Set $\mathcal{S}^{(0)} = \emptyset$, $\mathcal{M}_0 = \emptyset$ and $\mathcal{C}_0 = \mathcal{P_1}$
-  
-  - Step 2: (Selection)
-    - Evaluation. In the kth step (k ≥ 1), we are given $S^{(k−1)}$. 
-    Then, for every $j \in \mathcal{F}/S^{(k−1)}$, we construct a
-    candidate model $\mathcal{M}^{(k−1)} = \mathcal{S}^{(k-1)} \cup j$. 
-    We then compute $RSS^{(k−1)}$
-    - Screen. We then find $a_k = argmin(RSS_{j}^{(k-1)})$ and update 
-    $\mathcal{S}^{(k)}=\mathcal{S}^{(k-1)} \cup {a_k}$ accordingly.
-    
-    (Selection) In the kth step with given $\mathcal{S}^{(k-1)}$, $\mathcal{C}^{k−1}$ and $\mathcal{M}^{k−1}$, forward regression is used to select one more predictor from $\mathcal{C}^{k−1}/ \mathcal{S}^{k−1}$ into the model. We add the selected one into $\mathcal{S}^{k−1}$ to get $\mathcal{S}^k$. We also update $\mathcal{C}^k$ and $\mathcal{M}^k$ if the newly selected predictor is a main effect. Otherwise, $\mathcal{C}^k = \mathcal{C}^{k−1}$ and $\mathcal{M}^k = \mathcal{M}^{k−1}$.
-    
-  - Step 3: (Solution Path). Iterating Step 2, for d times, which leads to a total of n nested candidate models.  We then collect those models by a solution path $\mathbb{S} = \{\mathcal{S}^{(k)}: 1 \le k \le n\}$
-
- 
- Model (iForm HGI)
-========================================================
-type: incomplete
-
- iForm, still needs updated
- 
- - Algorithm
-  - Step 1: (Initialization) 
-  Set $\mathcal{S}^{(0)} = \emptyset$, $\mathcal{M}_0 = \emptyset$ and $\mathcal{C}_0 = \mathcal{P_1}$
-  
-  - Step 2: (Selection)
-    - Evaluation. In the kth step (k ≥ 1), we are given $S^{(k−1)}$. 
-    Then, for every $j \in \mathcal{F}/S^{(k−1)}$, we construct a
-    candidate model $\mathcal{M}^{(k−1)} = \mathcal{S}^{(k-1)} \cup j$. 
-    We then compute $RSS^{(k−1)}$
-    - Screen. We then find $a_k = argmin(RSS_{j}^{(k-1)})$ and update 
-    $\mathcal{S}^{(k)}=\mathcal{S}^{(k-1)} \cup {a_k}$ accordingly.
-    
-    (Selection) In the kth step with given $\mathcal{S}^{(k-1)}$, $\mathcal{C}^{k−1}$ and $\mathcal{M}^{k−1}$, forward regression is used to select one more predictor from $\mathcal{C}^{k−1}/ \mathcal{S}^{k−1}$ into the model. We add the selected one into $\mathcal{S}^{k−1}$ to get $\mathcal{S}^k$. We also update $\mathcal{C}^k$ and $\mathcal{M}^k$ if the newly selected predictor is a main effect. Otherwise, $\mathcal{C}^k = \mathcal{C}^{k−1}$ and $\mathcal{M}^k = \mathcal{M}^{k−1}$.
-    
-  - Step 3: (Solution Path). Iterating Step 2, for d times, which leads to a total of n nested candidate models.  We then collect those models by a solution path $\mathbb{S} = \{\mathcal{S}^{(k)}: 1 \le k \le n\}$
- 
+  - Step 2: (Selection) In the kth step with given $\mathcal{S}^{(k-1)}$, $\mathcal{C}^{k−1}$ and $\mathcal{M}^{k−1}$, [forward regression](#/7) is used to select one more predictor from $\mathcal{C}^{k−1}/ \mathcal{S}^{k−1}$ into the model. We add the selected one into $\mathcal{S}^{k−1}$ to get $\mathcal{S}^k$. We also update $\mathcal{C}^k$ and $\mathcal{M}^k$ if the newly selected predictor is a main effect. Otherwise, $\mathcal{C}^k = \mathcal{C}^{k−1}$ and $\mathcal{M}^k = \mathcal{M}^{k−1}$
+  - Step 3: (Solution Path). Iterating Step 2, for d times, which leads to a total of n nested candidate models.  We then collect those models by a solution path $\mathbb{S}=\{\mathcal{S}^{(k)}: 1 \le k \le n\}$
+</small>
 
 
 Model Properties
@@ -301,18 +279,35 @@ show it holds for all three scenarios
   - show transformation from general case with correlated errors to making have uncorrelated errors
 
 
-Model Theoretical Results
+False Discovery Rate
 ========================================================
-type: incomplete
+type: exclaim
 
-$$ BIC_1 = n*log(RSS/n) + k*log(n) $$  
-$$ BIC_2 = n*log(RSS/n) + k*(log(n) + 2*log(d^{\star})) $$
+$$BIC = n*log(RSS/n) + k*log(n)$$  
+$$BIC_2 = n*log(RSS/n) + k*(log(n) + 2*log(d^{\star}))$$
 
-derived BIC2 by controlling the false discovery rate (FDR) and showed that it is selection consistent if $d_0 = O(n\xi)$ for some $\xi > 0$
+ - Derived $BIC_2$ by controlling the false discovery rate (FDR)
+ - Showed that it is selection consistent if $d_0 = O(n^{\xi})$ for some $\xi > 0$
+ - Wang (2009) showed its selection consistency for FS under ultra-high dimensional setup $d_0 = O(e^(n\xi))$
 
-Wang (2009) showed its selection consistency for FS under ultra-high dimensional setup $d_0 = O(e^(n\xi))$.
 
+Simulation Studies
+========================================================
+type: exclaim
 
+ - Simulations were performed to compare model properties
+ - Data was generated from higher-order genetic interaction model
+ - 50 predictors were generated with a sample size of 300 observations
+ - The data was split into training and a testing set 
+
+<br>
+<small>
+4 Scenarios  
+ - Truth obeys strong heredity
+ - Truth obeys weak heredity
+ - Truth follows anti-heredity
+ - Truth is from pure interaction effects
+</small>
 
 Simulation (truth obeys strong heredity)
 ========================================================
@@ -322,16 +317,16 @@ type: incomplete
 
 |Model                |T1_tpr |T1_tnr |T1_fpr |T1_fnr |T2_tpr |T2_tnr |T2_fpr |T2_fnr |T3_tpr |T3_tnr |T3_fpr |T3_fnr | Train_MSE| Train_Rsq| Test_MSE| Test_Rsq|RunTime |
 |:--------------------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|---------:|---------:|--------:|--------:|:-------|
-|forward_select       |1.000  |0.999  |0.001  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.330|     0.727|    3.490|    0.711|0.757   |
-|iform_order_2_weak   |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.128|     0.907|    1.252|    0.895|5.896   |
-|iform_order_2_strong |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.102|     0.909|    1.198|    0.900|1.557   |
-|forward_select_2     |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.086|     0.910|    1.198|    0.900|25.481  |
-|forward_select_3     |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     0.992|     0.918|    1.121|    0.906|471.881 |
-|iform_order_3_weak   |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.020|     0.916|    1.135|    0.905|11.346  |
-|iform_order_3_strong |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     0.968|     0.920|    1.060|    0.911|1.872   |
-|glinternet           |1.000  |0.559  |0.441  |0.000  |1.000  |0.982  |0.018  |0.000  |0.000  |1.000  |0.000  |1.000  |     1.246|     0.898|    1.446|    0.880|208.167 |
-|hierNet              |1.000  |0.697  |0.303  |0.000  |1.000  |0.976  |0.024  |0.000  |0.000  |1.000  |0.000  |1.000  |     0.906|     0.925|    1.421|    0.882|27.521  |
-|Oracle               |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |     0.953|     0.921|    1.050|    0.912|NA      |
+|forward_select       |1.000  |0.999  |0.001  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |      3.33|      0.73|     3.49|     0.71|0.757   |
+|iform_order_2_weak   |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |      1.13|      0.91|     1.25|     0.90|5.896   |
+|iform_order_2_strong |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |      1.10|      0.91|     1.20|     0.90|1.557   |
+|forward_select_2     |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |      1.09|      0.91|     1.20|     0.90|25.481  |
+|forward_select_3     |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |      0.99|      0.92|     1.12|     0.91|471.881 |
+|iform_order_3_weak   |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |      1.02|      0.92|     1.14|     0.90|11.346  |
+|iform_order_3_strong |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |      0.97|      0.92|     1.06|     0.91|1.872   |
+|glinternet           |1.000  |0.559  |0.441  |0.000  |1.000  |0.982  |0.018  |0.000  |0.000  |1.000  |0.000  |1.000  |      1.25|      0.90|     1.45|     0.88|208.167 |
+|hierNet              |1.000  |0.697  |0.303  |0.000  |1.000  |0.976  |0.024  |0.000  |0.000  |1.000  |0.000  |1.000  |      0.91|      0.93|     1.42|     0.88|27.521  |
+|Oracle               |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |      0.95|      0.92|     1.05|     0.91|NA      |
 </small>
 
 
@@ -343,16 +338,16 @@ type: incomplete
 
 |Model                |T1_tpr |T1_tnr |T1_fpr |T1_fnr |T2_tpr |T2_tnr |T2_fpr |T2_fnr |T3_tpr |T3_tnr |T3_fpr |T3_fnr | Train_MSE| Train_Rsq| Test_MSE| Test_Rsq|RunTime |
 |:--------------------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|---------:|---------:|--------:|--------:|:-------|
-|forward_select       |1.000  |0.999  |0.001  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  3.325580|  0.731288| 3.480321| 0.715774|4.355   |
-|iform_order_2_weak   |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  1.119445|  0.909529| 1.200191| 0.900796|8.342   |
-|iform_order_2_strong |1.000  |0.992  |0.008  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  1.580267|  0.872314| 1.706937| 0.859151|2.952   |
-|forward_select_2     |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  1.082909|  0.912358| 1.166813| 0.903782|38.872  |
-|forward_select_3     |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  0.978966|  0.920820| 1.089431| 0.910194|569.983 |
-|iform_order_3_weak   |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  1.003161|  0.919024| 1.079398| 0.910740|13.054  |
-|iform_order_3_strong |1.000  |0.992  |0.008  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  1.578001|  0.872493| 1.704871| 0.859294|2.787   |
-|glinternet           |1.000  |0.469  |0.531  |0.000  |1.000  |0.980  |0.020  |0.000  |0.000  |1.000  |0.000  |1.000  |  0.905914|  0.926629| 1.424976| 0.883336|29.975  |
-|hierNet              |1.000  |0.657  |0.343  |0.000  |1.000  |0.973  |0.027  |0.000  |0.000  |1.000  |0.000  |1.000  |  0.856364|  0.930865| 1.412004| 0.884118|33.302  |
-|Oracle               |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |  0.940407|  0.923918| 1.034358| 0.914689|NA      |
+|forward_select       |1.000  |0.999  |0.001  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.326|     0.731|    3.480|    0.716|4.355   |
+|iform_order_2_weak   |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.119|     0.910|    1.200|    0.901|8.342   |
+|iform_order_2_strong |1.000  |0.992  |0.008  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.580|     0.872|    1.707|    0.859|2.952   |
+|forward_select_2     |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.083|     0.912|    1.167|    0.904|38.872  |
+|forward_select_3     |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     0.979|     0.921|    1.089|    0.910|569.983 |
+|iform_order_3_weak   |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.003|     0.919|    1.079|    0.911|13.054  |
+|iform_order_3_strong |1.000  |0.992  |0.008  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.578|     0.872|    1.705|    0.859|2.787   |
+|glinternet           |1.000  |0.469  |0.531  |0.000  |1.000  |0.980  |0.020  |0.000  |0.000  |1.000  |0.000  |1.000  |     0.906|     0.927|    1.425|    0.883|29.975  |
+|hierNet              |1.000  |0.657  |0.343  |0.000  |1.000  |0.973  |0.027  |0.000  |0.000  |1.000  |0.000  |1.000  |     0.856|     0.931|    1.412|    0.884|33.302  |
+|Oracle               |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |     0.940|     0.924|    1.034|    0.915|NA      |
 </small>
 
 
@@ -364,16 +359,16 @@ type: incomplete
 
 |Model                |T1_tpr |T1_tnr |T1_fpr |T1_fnr |T2_tpr |T2_tnr |T2_fpr |T2_fnr |T3_tpr |T3_tnr |T3_fpr |T3_fnr | Train_MSE| Train_Rsq| Test_MSE| Test_Rsq|RunTime |
 |:--------------------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|---------:|---------:|--------:|--------:|:-------|
-|forward_select       |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  3.283812|  0.728960| 3.509981| 0.713558|1.005   |
-|iform_order_2_weak   |1.000  |0.996  |0.004  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  3.139589|  0.740934| 3.435077| 0.719197|7.866   |
-|iform_order_2_strong |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  3.283812|  0.728960| 3.509981| 0.713558|2.386   |
-|forward_select_2     |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  1.081473|  0.910605| 1.171091| 0.903961|29.095  |
-|forward_select_3     |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  0.988849|  0.918303| 1.095295| 0.910102|548.617 |
-|iform_order_3_weak   |1.000  |0.997  |0.003  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  3.155176|  0.739209| 3.447518| 0.718685|13.216  |
-|iform_order_3_strong |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  3.283812|  0.728960| 3.509981| 0.713558|2.703   |
-|glinternet           |1.000  |0.290  |0.710  |0.000  |1.000  |0.971  |0.029  |0.000  |0.000  |1.000  |0.000  |1.000  |  0.844189|  0.930543| 1.577582| 0.871187|26.564  |
-|hierNet              |1.000  |0.142  |0.858  |0.000  |1.000  |0.915  |0.085  |0.000  |0.000  |1.000  |0.000  |1.000  |  0.306779|  0.974754| 2.215589| 0.818759|3.417   |
-|Oracle               |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |  0.951558|  0.921322| 1.031376| 0.915384|NA      |
+|forward_select       |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.284|     0.729|    3.510|    0.714|1.005   |
+|iform_order_2_weak   |1.000  |0.996  |0.004  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.140|     0.741|    3.435|    0.719|7.866   |
+|iform_order_2_strong |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.284|     0.729|    3.510|    0.714|2.386   |
+|forward_select_2     |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.081|     0.911|    1.171|    0.904|29.095  |
+|forward_select_3     |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     0.989|     0.918|    1.095|    0.910|548.617 |
+|iform_order_3_weak   |1.000  |0.997  |0.003  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.155|     0.739|    3.448|    0.719|13.216  |
+|iform_order_3_strong |1.000  |1.000  |0.000  |0.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.284|     0.729|    3.510|    0.714|2.703   |
+|glinternet           |1.000  |0.290  |0.710  |0.000  |1.000  |0.971  |0.029  |0.000  |0.000  |1.000  |0.000  |1.000  |     0.844|     0.931|    1.578|    0.871|26.564  |
+|hierNet              |1.000  |0.142  |0.858  |0.000  |1.000  |0.915  |0.085  |0.000  |0.000  |1.000  |0.000  |1.000  |     0.307|     0.975|    2.216|    0.819|3.417   |
+|Oracle               |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |     0.952|     0.921|    1.031|    0.915|NA      |
 </small>
 
 
@@ -383,57 +378,68 @@ type: incomplete
 
 <small>
 
-|Model                |T1_tpr |T1_tnr |T1_fpr |T1_fnr |T2_tpr |T2_tnr |T2_fpr |T2_fnr |T3_tpr |T3_tnr |T3_fpr |T3_fnr | Train_MSE| Train_Rsq| Test_MSE|   Test_Rsq|RunTime |
-|:--------------------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|---------:|---------:|--------:|----------:|:-------|
-|forward_select       |NaN    |0.980  |0.020  |NaN    |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  3.316366| 0.0251390| 3.445319| -0.0388060|1.177   |
-|iform_order_2_weak   |NaN    |0.972  |0.028  |NaN    |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  3.006933| 0.1151560| 3.180697|  0.0404880|5.840   |
-|iform_order_2_strong |NaN    |0.979  |0.021  |NaN    |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  3.294337| 0.0309730| 3.428952| -0.0339540|2.081   |
-|forward_select_2     |NaN    |1.000  |0.000  |NaN    |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  1.117353| 0.6694520| 1.169791|  0.6435790|26.396  |
-|forward_select_3     |NaN    |1.000  |0.000  |NaN    |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  1.004500| 0.7025090| 1.080699|  0.6705220|530.362 |
-|iform_order_3_weak   |NaN    |0.975  |0.025  |NaN    |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  3.043130| 0.1064300| 3.208641|  0.0320860|9.461   |
-|iform_order_3_strong |NaN    |0.979  |0.021  |NaN    |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |  3.294337| 0.0309730| 3.428952| -0.0339540|2.265   |
-|glinternet           |NaN    |0.429  |0.571  |NaN    |1.000  |0.983  |0.017  |0.000  |0.000  |1.000  |0.000  |1.000  |  1.002329| 0.6991235| 1.444997|  0.5614912|145.078 |
-|hierNet              |NaN    |0.147  |0.853  |NaN    |1.000  |0.955  |0.045  |0.000  |0.000  |1.000  |0.000  |1.000  |  0.672495| 0.8021830| 1.758235|  0.4666160|4.491   |
-|Oracle               |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |  0.968410| 0.7132750| 1.021514|  0.6886360|NA      |
+|Model                |T1_tpr |T1_tnr |T1_fpr |T1_fnr |T2_tpr |T2_tnr |T2_fpr |T2_fnr |T3_tpr |T3_tnr |T3_fpr |T3_fnr | Train_MSE| Train_Rsq| Test_MSE| Test_Rsq|RunTime |
+|:--------------------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|---------:|---------:|--------:|--------:|:-------|
+|forward_select       |NaN    |0.980  |0.020  |NaN    |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.316|     0.025|    3.445|   -0.039|1.177   |
+|iform_order_2_weak   |NaN    |0.972  |0.028  |NaN    |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.007|     0.115|    3.181|    0.040|5.840   |
+|iform_order_2_strong |NaN    |0.979  |0.021  |NaN    |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.294|     0.031|    3.429|   -0.034|2.081   |
+|forward_select_2     |NaN    |1.000  |0.000  |NaN    |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.117|     0.669|    1.170|    0.644|26.396  |
+|forward_select_3     |NaN    |1.000  |0.000  |NaN    |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     1.004|     0.703|    1.081|    0.671|530.362 |
+|iform_order_3_weak   |NaN    |0.975  |0.025  |NaN    |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.043|     0.106|    3.209|    0.032|9.461   |
+|iform_order_3_strong |NaN    |0.979  |0.021  |NaN    |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |0.000  |1.000  |     3.294|     0.031|    3.429|   -0.034|2.265   |
+|glinternet           |NaN    |0.429  |0.571  |NaN    |1.000  |0.983  |0.017  |0.000  |0.000  |1.000  |0.000  |1.000  |     1.002|     0.699|    1.445|    0.561|145.078 |
+|hierNet              |NaN    |0.147  |0.853  |NaN    |1.000  |0.955  |0.045  |0.000  |0.000  |1.000  |0.000  |1.000  |     0.672|     0.802|    1.758|    0.467|4.491   |
+|Oracle               |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |     0.968|     0.713|    1.022|    0.689|NA      |
 </small>
 
 
-Application 1 (C Elegans) Picture of Celegans Genome
+Application 1 (C Elegans)
 ========================================================
-type: incomplete
-
- - To genetically dissect the causes of different variability among C. elegans traits, transcript abundances of 20,000 gene transcripts were measured by microarray in developmentally synchronized young adult hermaphrodites of 208 recombinant inbred  advanced intercross lines from a cross between the laboratory strain, N2, and a wild isolate from Hawaii, CB485618
-
+type: exclaim
+<small>
+To genetically dissect the causes of different variability among C. elegans traits, transcript abundances of 20,000 gene transcripts were measured by microarray in developmentally synchronized young adult hermaphrodites of 208 recombinant inbred  advanced intercross lines from a cross between the laboratory strain, N2, and a wild isolate from Hawaii, CB485618
  - Microarray data preprocessed through a normal–exponential convolution background correction and were normalized using quantile standardization  Rockman et al 2010
-
+</small>
+<div class="midcenter" style="margin-left:100px; margin-top:75px;">
+<img src='images/CElegansPicture.png' height="250" widith="250" style="background-color:transparent; border:0px; box-shadow:none;"> </img>
+</div>
 
 
 Application 1 (C Elegans)
 ========================================================
-type: incomplete
-incremental: true
+type: exclaim
 
+<div class="tooltip">
 <div class="midcenter" style="margin-left:-300px; margin-top:-300px;">
 <img src='images/OutputTable_HighDeQTL.png'> </img>
+  <span class="tooltiptext">
+  A_12_P103290 on Chromosome 1
+</span>
+</div>
 </div>
 
 
 Application 1 (C Elegans)
 ========================================================
-type: incomplete
+type: exclaim
 
-<div class="midecenter" style="margin-left:-300px; margin-top:-300px;">
-<img src='images/iForm_Network_Chr1.jpeg'> </img>
-</div>
+<img src='images/iForm_Network_Chr1.jpeg' height="500" width="800" ></img>
 
-<div class="footer" style="margin-top:-150px;font-size:80%;">
-</div>
+
+Application 2 (Mei Trees)
+========================================================
+type: exclaim
+
+ - 190 F1 hybrids derived from two different cultivars, Fenban x Kouzi Yudie
+ - 1484 SNP markers over eight mei chromosomes
+ - Shoot growth measured once every two weeks during an entire growth season from March to October
+ - Fitness of growth equation $g(t)=a/(1+b*exp(-rt))$ obtaining the estimates of a, b, and r for each hybrid
+ - Estimated growth parameters a, b, r as static phenotypes
 
 
 Application 2 (Mei Trees)
 ========================================================
 type: incomplete
-incremental: true
 
 
 |Coefficient                           | Estimate|      SE| T.value|P.value      |
@@ -448,42 +454,39 @@ incremental: true
 
 Application 2 (Mei Trees)
 ========================================================
-type: incomplete
-incremental: true
+type: exclaim
+<small>
 
-
-|Coefficient                                              | Estimate|      SE| T.value|P.value      |
-|:--------------------------------------------------------|--------:|-------:|-------:|:------------|
-|(Intercept)                                              |  0.16859| 0.05801|   2.906|0.00415 **   |
-|AATTC_nn_np_2517_a                                       |  0.27773| 0.04396|   6.318|2.27e-09 *** |
-|AATTC_nn_np_2815_a                                       |  0.26382| 0.05295|   4.983|1.54e-06 *** |
-|CATG_nn_np_3479_a                                        |  0.20767| 0.03467|   5.990|1.23e-08 *** |
-|CATG_nn_np_1284_a                                        |  0.04522| 0.04265|   1.060|0.29055      |
-|AATTC_nn_np_2815_a×AATTC_lm_ll_3034_a                    |  1.82572| 0.17925|  10.185|< 2e-16 ***  |
-|AATTC_nn_np_2815_a×AATTC_hk_hk_278_a                     |  0.25935| 0.03888|   6.671|3.48e-10 *** |
-|CATG_lm_ll_3153_a                                        |  0.14877| 0.03491|   4.262|3.36e-05 *** |
-|CATG_nn_np_1284_a×AATTC_nn_np_554_a                      |  0.22994| 0.05104|   4.505|1.23e-05 *** |
-|AATTC_nn_np_2815_a.AATTC_lm_ll_3034_a×AATTC_nn_np_1615_a | -1.51714| 0.19060|  -7.960|2.39e-13 *** |
-|AATTC_nn_np_2815_a×AATTC_nn_np_929_a                     | -0.30805| 0.05477|  -5.624|7.57e-08 *** |
-|AATTC_hk_hk_479_d                                        |  0.16044| 0.03443|   4.660|6.37e-06 *** |
-|AATTC_nn_np_2517_a×CATG_hk_hk_648_a                      |  0.14537| 0.02840|   5.118|8.33e-07 *** |
-
+|Coefficient                                              | Estimate|     SE| T.value|P.value      |
+|:--------------------------------------------------------|--------:|------:|-------:|:------------|
+|(Intercept)                                              |   0.1686| 0.0580|   2.906|0.00415 **   |
+|AATTC_nn_np_2517_a                                       |   0.2777| 0.0440|   6.318|2.27e-09 *** |
+|AATTC_nn_np_2815_a                                       |   0.2638| 0.0530|   4.983|1.54e-06 *** |
+|CATG_nn_np_3479_a                                        |   0.2077| 0.0347|   5.990|1.23e-08 *** |
+|CATG_nn_np_1284_a                                        |   0.0452| 0.0426|   1.060|0.29055      |
+|AATTC_nn_np_2815_a×AATTC_lm_ll_3034_a                    |   1.8257| 0.1792|  10.185|< 2e-16 ***  |
+|AATTC_nn_np_2815_a×AATTC_hk_hk_278_a                     |   0.2594| 0.0389|   6.671|3.48e-10 *** |
+|CATG_lm_ll_3153_a                                        |   0.1488| 0.0349|   4.262|3.36e-05 *** |
+|CATG_nn_np_1284_a×AATTC_nn_np_554_a                      |   0.2299| 0.0510|   4.505|1.23e-05 *** |
+|AATTC_nn_np_2815_a.AATTC_lm_ll_3034_a×AATTC_nn_np_1615_a |  -1.5171| 0.1906|  -7.960|2.39e-13 *** |
+|AATTC_nn_np_2815_a×AATTC_nn_np_929_a                     |  -0.3080| 0.0548|  -5.624|7.57e-08 *** |
+|AATTC_hk_hk_479_d                                        |   0.1604| 0.0344|   4.660|6.37e-06 *** |
+|AATTC_nn_np_2517_a×CATG_hk_hk_648_a                      |   0.1454| 0.0284|   5.118|8.33e-07 *** |
+</small>
 
 Application 2 (Mei Trees)
 ========================================================
-type: incomplete
+type: exclaim
 
-Show results in graphical form of the different SNPs and how they impact Tree height growth over time learned from running the selection procedure.  
 <small>
-$\alpha_1 =$ what SNP in the table  
-$\alpha_2 =$ what SNP in the table  
-$\alpha_3 =$ what SNP in the table  
+$\alpha_1=AATTC\_nn\_np\_2815$   
+$\alpha_2=AATTC\_lm\_ll\_3034$  
+$\alpha_3=AATTC\_nn\_np\_1615$  
 </small>
 
 <div class="tooltip">
 <img src='images/GrowthCurveComparison.png', width = "1000px"></img>
   <span class="tooltiptext">
-
 $\mu_{111} = \mu(t) + \alpha_1(t) + \alpha_2(t) + \alpha_3(t) + i_{12}(t) + i_{13}(t) + i_{23}(t) + i_{123}(t)$
 $\mu_{112} = \mu(t) + \alpha_1(t) + \alpha_2(t) - \alpha_3(t) + i_{12}(t) - i_{13}(t) - i_{23}(t) - i_{123}(t)$
 $\mu_{121} = \mu(t) + \alpha_1(t) - \alpha_2(t) + \alpha_3(t) - i_{12}(t) + i_{13}(t) - i_{23}(t) - i_{123}(t)$
@@ -492,14 +495,13 @@ $\mu_{211} = \mu(t) - \alpha_1(t) + \alpha_2(t) + \alpha_3(t) - i_{12}(t) - i_{1
 $\mu_{212} = \mu(t) - \alpha_1(t) + \alpha_2(t) - \alpha_3(t) - i_{12}(t) + i_{13}(t) - i_{23}(t) + i_{123}(t)$
 $\mu_{221} = \mu(t) - \alpha_1(t) - \alpha_2(t) + \alpha_3(t) + i_{12}(t) - i_{13}(t) - i_{23}(t) + i_{123}(t)$
 $\mu_{222} = \mu(t) - \alpha_1(t) - \alpha_2(t) - \alpha_3(t) + i_{12}(t) + i_{13}(t) + i_{23}(t) - i_{123}(t)$
-
 </span>
 </div>
 
 
 Application 2 (Mei Trees)
 ========================================================
-type: incomplete
+type: exclaim
 
 <div class="tooltip">
 <img src='images/EpistasisComparison.png', width = "1000px"></img>
@@ -516,51 +518,45 @@ $$i_{123}(t) =  [(\mu_{111}(t) + \mu_{122}(t) + \mu_{212}(t) + \mu_{122}(t)) - (
 
 Mei Tree as Motivation
 ========================================================
-type: incomplete
+type: exclaim
 
-Previous results were from pre-fitted growth curves fit to each tree height, following the asymptotic logistic growth curve.  
+ - Previous results were from pre-fitted growth curves fit
+ - Each parameter was then used as an individual response 
+ - Want more efficient approach that uses all the information in the dataset
+ - Need for a model with a functional response variable while using the iform procedure
 
-Use Mei Tree results and data to set up motivation for functional response variable and using the iform procedure.  How can we incorporate all information from the response variable into one model?  
 
-
-
-Background of Functional Response
+Key Concepts
 ========================================================
-type: incomplete
+type: exclaim
 
  - Regression as Linear Combination of Basis Functions
  - Legendre Polynomials to model genetic effect of each SNP over time
  - Generalized Least Squares for correlated errors (AR1 model assumed)
- 
-In these sections talk about Treating linear regression as basis functions, legendre polynomials and generalized least squares. 
-
-Linear regression when there is a certain degree of correlation between the residuals in a regression model. In these cases, ordinary least squares and weighted least squares can be statistically inefficient, or even give misleading inferences
-
 
 
 Generalized Least Squares
 ========================================================
-type: incomplete
+type: exclaim
 
-[GLS](https://en.wikipedia.org/wiki/Generalized_least_squares)
-
-The GLS estimator is unbiased, consistent, efficient, and asymptotically normal:
-
-AR(1) model assumed for our purposes.  
-
-
-
+ - Unbiased
+ - Consistent
+ - Statisticall and Computationally efficient
+ - Asymptotically normal
+ 
 
 Legendre Polynomials
 ========================================================
-type: incomplete
+type: exclaim
 
  - Orthogonal and therefore variables will not be correlated
  - variety of fits up to the order of the researcher's choosing
- - easily implemented as basis functions 
- -- saves on computational cost and time over using splines or other basis functions learned from the data
- 
+ - Easily implemented as basis functions 
+  - saves on computational cost and time over using splines or other basis functions learned from the data
 
+<div class='tooltip'>
+<img src="DefensePresentation.Rproj-figure/Legendre-fig-1.png" title="First 10 Legendre Polynomials" alt="First 10 Legendre Polynomials" width="80%" style="display: block; margin: auto;" />
+<span class='tooltip-text'>
 $$
 \begin{equation}
 \begin{split}
@@ -570,71 +566,55 @@ P_n(x) & = \frac{1}{2^n}\sum_{k=0}^{n}{{n}\choose{k}}^2(x-1)^{n-k}(x+1)^k \\
 \end{split}
 \end{equation}
 $$
-
-
-
-<img src="DefensePresentation.Rproj-figure/Legendre-fig-1.png" title="First 10 Legendre Polynomials" alt="First 10 Legendre Polynomials" width="80%" style="display: block; margin: auto;" />
-
+</span>
+</div>
 
 Legendre Polynomials
 ========================================================
-type: incomplete
+type: exclaim
 
 <img src='images/GrowthCurveExample.png', width = "1000px"> 
 
 
 Legendre Polynomials
 ========================================================
-type: incomplete
+type: exclaim
 
 <img src='images/ExampleDataGrowthCurve.png', width = "1000px"> 
 
 
 Legendre Polynomials
 ========================================================
-type: incomplete
+type: exclaim
 
 <img src='images/LegendreFit.png', width = "1000px"> 
 
 
-
-Generalized Least Squares
-========================================================
-type: incomplete
-
-We have assumed that $$var(\epsilon) = \sigma^2I$$ when the response is static but if we have correlated errors like when we have repeated measurements over time $$var(\epsilon) = \sigma^2\Sigma$$ where sigma^2 is unknown but Sigma is known.  We can use Generalized least squares, Instead of minimizing the ordinary least squares estimate we have to find the arg minimum of 
-$$ (y - X\beta)^T\Sigma^{-1}(y - X\beta) $$
-which is solved by 
-$$ \hat\beta = (X^T\Sigma^{-1}X)^{-1}X^T\Sigma^{-1}y $$
-since we can write $$\Sigma = SS^T$$, where S is a triangular matrix using the Choleski Decomposition, we have
-$$ (y - X\beta)^T(S^{-T}S^{-1})(y - X\beta) = (S^{-1}y - S^{-1}X\beta)^T(S^{-1}y - S^{-1}X\beta)$$
-
-So GLS is like regressing $S^{-1}X$ on $S^{-1}y$. Furthermore
-$$y = X\beta + \epsilon$$
-$$S^{-1}y = S^{-1}X\beta + S^{-1}\epsilon$$
-$$y' = X'\beta + \epsilon'$$
-
-
-So we have a new regression equation $y' = X'\beta + \epsilon'$ where if we examine the variance of the new errors, $\epsilon'$
-we find
-
-$$var(\epsilon') = var(S^{-1}\epsilon) = S^{-1}(var(\epsilon))S^{-T} = S^{-1}\sigma^2SS^TS^{-T} = \sigma^2I$$
-
-So the new variables $y'$ and $X'$ are related by a regression equation which has uncorrelated errors with
-equal variance. Of course, the practical problem is that $\Sigma$ may not be known.
-We find that,
-
-$var(\hat\beta) = (X^T\Sigma^{-1}X)^{-1}\sigma^2$
-
-
 iForm with Legendre Model
 ========================================================
-type: incomplete
+type: exclaim
 
-$$ \alpha_j(t) = (L_0(t), L_1(t), ... , L_s(t))*(u_{j0}, u_{j1},...,u_{js})^T $$
-$$ \beta_j(t) = (L_0(t), L_1(t), ... , L_{s'}(t))*(v_{j0}, v_{j1},...,v_{js'})^T $$
+$$\alpha_j(t) = (L_0(t), L_1(t), ... , L_s(t))*(u_{j0}, u_{j1},...,u_{js})^T$$
+$$\beta_j(t) = (L_0(t), L_1(t), ... , L_{s'}(t))*(v_{j0}, v_{j1},...,v_{js'})^T$$
 
-$y(t) = \mu(t) + \sum_{j=1}^{J}\alpha_j(t)\xi_j + \sum_{k=1}^{K}\beta_k(t)\zeta_k + \sum_{I_1<I_2=1}^{I}\gamma_I^{aa}(t) \xi_{I_1}\xi_{I_2} + \sum_{I_1<I_2=1}^{I}\gamma_I^{ad}(t) \xi_{I_1}\zeta_{I_2} + \sum_{I_1<I_2=1}^{I} \gamma_I^{da}(t) \zeta_{I_1}\xi_{I_2} + \sum_{I_1<I_2=1}^{I} \gamma_I^{dd}(t)\zeta_{I_1}\zeta_{I_2} + \epsilon(t)$
+
+$$
+\begin{equation}
+\begin{split}
+y(t) & = \mu(t) + \sum_{j=1}^{J}\alpha_j(t)\xi_j + \sum_{k=1}^{K}\beta_k(t)\zeta_k //
+& + \sum_{I1<I2=1}^{I} \gamma_I^{aa}(t) \xi_{I1}\xi_{I2}
+\end{split}
+\end{equation}
+$$
+
+
+$$
+\begin{equation}
+\begin{split}
+y(t)=\mu(t)+\sum_{j=1}^{J}\alpha_j(t)\xi_j+\sum_{k=1}^{K}\beta_k(t)\zeta_k+\sum_{I_1<I_2=1}^{I}\gamma_I^{aa}(t)\xi_{I1}\xi_{I2}+\sum_{I1<I2=1}^{I}\gamma_I^{ad}(t)\xi_{I1}\zeta_{I2}+\sum_{I1<I2=1}^{I}\gamma_I^{da}(t)\zeta_{I1}\xi_{I2}+\sum_{I_1<I_2=1}^{I}\gamma_I^{dd}(t)\zeta_{I1}\zeta_{I2}+\epsilon(t)
+\end{split}
+\end{equation}
+$$
 
 
 
