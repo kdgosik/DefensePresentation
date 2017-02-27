@@ -74,12 +74,12 @@ incremental: true
 
  Consider all SNPs at once as possible QTLs (p >> n)  
 
-Screening is predominantly used to quickly reduce the dimensionality. We would need a relativley efficient computational procedure and the resulting model should posses sure screening properties under reasonable assumptions
+Screening is predominantly used to quickly reduce the dimensionality. We would need a relatively efficient computational procedure and the resulting model should posses sure screening properties under reasonable assumptions
 <small>
  - Including order-2 epistatic effects increases to ${{p}\choose{2}}+p=\frac{p^2+p}{2}$
   - p = 500, gives 125,250 possible candidate SNPs and epistatic effects
  - Including order-3 epistatic effects increases to ${{p}\choose{3}}+{{p}\choose{2}}+p=\frac{p^3+5p}{6}$
-  - p = 500 gives 20,833,750 possibie candidate SNPs and epistatic effects
+  - p = 500 gives 20,833,750 possible candidate SNPs and epistatic effects
 </small>
 
 
@@ -95,8 +95,8 @@ type: exclaim
  - Dantzig selector 
  
 <h4> Interaction selection Methods </h3>
- - Glinternet[[2]](#/48)
- - HierNet [[3]](#/48)
+ - Glinternet <small>(Lim and Hastie 2014)</small>
+ - HierNet <small>(Bien et al 2013)</small>
 
 
 Notation
@@ -142,14 +142,18 @@ Assumptions for standard technical conditions needed to show screening consisten
  - (C4) Divergence speed of d and $d_0$.  There exists constants 
  $\xi$, $\xi_0$, and $\nu$ such that $log(d) \le \nu n^{\xi_{0}}$, and $\xi + 6\xi_0 + 12\xi_{min} \lt 1$.
 </small>
-
+<br>
+<footer>
+[(order2)](#/13)
+[(order3)](#/14)
+</footer>
 
 Screening Consistency
 ========================================================
-type: incomplete
+type: exclaim
 
 <small>
-Urealistic to require $\mathcal{T} \in \mathcal{S}$
+Unrealistic to require $\mathcal{T} \in \mathcal{S}$
  - Not guaranteed even in the fixed dimension situation  </p>
 
 It is possible to have $\mathcal{T} \subset \mathcal{S}^{(k)}$ for some 1 ≤ k ≤ n  
@@ -158,11 +162,11 @@ It is possible to have $\mathcal{T} \subset \mathcal{S}^{(k)}$ for some 1 ≤ k 
 The solution path $\mathcal{S}$ is said to be screening consistent, if  
 $$P(\mathcal{T} \subset \mathcal{S}^{(k)} \in \mathcal{S}~for~some~1 \le k \le n) \rightarrow 1$$
 
-Under conditions (C1) - (C4), we have as $n \rightarrow \infty$
+Defining $K = 2\tau_{max} \nu C_{\beta}^2\tau_{min}^{-2}\nu_{\beta}^{-4}$ Under conditions (C1) - (C4), we have as $n \rightarrow \infty$
 $$P(\mathcal{T} \subset \mathcal{S}^{([K \nu n^{2\xi_0 + 4\xi_{min}}])}) \rightarrow 1$$
 
 within
-$O(n^{2\xi_0 + 4\xi_{min}})$ steps which is much smaller than the samples size, n under (C4).
+$O(n^{2\xi_0 + 4\xi_{min}})$ steps which is much smaller than the samples size, n under (C4). (Wang 2012)
 </small> 
 
 
@@ -171,13 +175,13 @@ Genetic Interactions
 type: exclaim
 
 <small>
- - Referred to as epistatic interactions, they contribute to many complex traits.  
- - Relatively little is known about the specific forms of genetic interactions that are important to heritable phenotypic variation.
- - Mainly reported genetic interactions involving only two loci.
- - Emphasis on gene–gene interactions over highr-order genetic interactions (HGIs) involving three or more loci is rooted in technical issues, rather than biology. (Taylor and Ehrenreich 2014)
+ - Referred to as epistatic interactions, they contribute to many complex traits  
+ - Relatively little is known about the specific forms of genetic interactions that are important to heritable phenotypic variation
+ - Mainly reported genetic interactions involving only two loci
+ - Emphasis on gene–gene interactions over higher-order genetic interactions (HGIs) involving three or more loci is rooted in technical issues, rather than biology (Taylor and Ehrenreich 2014)
 </small>
 <div class="midcenter" style="margin-left:150px; margin-top:150px;">
-<img src='images/EpistasisScissors.png' height="200" widith="200" style="background-color:transparent; border:0px; box-shadow:none;"> </img>
+<img src='images/EpistasisScissors.png' height="200" width="200" style="background-color:transparent; border:0px; box-shadow:none;"> </img>
 <footer>
 Epistatic Effects Work Like Scissors
 </footer>
@@ -191,14 +195,18 @@ type: exclaim
 It is inappropriate to model interaction terms when the main effects contributing to the interaction have either not been included or were deleted because the effects became marginal by the inclusion of the interaction effect
 
  - Implicit in Forward Selection Procedures 
- - SNP effects will not be removed if it becomes insignificant by inclusion of epistatic effects
+ - SNP effects will not be removed if it becomes insignificant by inclusion of epistatic effects later on
 
  
 Heredity Principle
 ========================================================
 type: exclaim
 
+Strong Condition:
 $\beta_{jk} \ne 0 \implies \beta_j, \beta_k \ne 0$
+
+Weak Condition:
+$\beta_{jk} \ne 0 \implies \beta_{j}^2+\beta_{k}^2 \ne 0$
 
  - Statistical efficiency
  - Computational efficient
@@ -211,11 +219,14 @@ type: exclaim
 
 $$\mathbf{Y} = \mathbf{X^T}\beta^{(1)} + \mathbf{Z^T}\beta^{(2)} + \epsilon$$
 
-Updated Assumptions
+Updated Assumptions 
  - $X_i$ and $X_jX_k$ are marginally and jointly normal
  - (C2a) There exists two constants $0 \lt \tau_{min} \lt \frac{1}{4} \lt 1 \lt \tau_{max} \lt \infty~$ s.t $\sqrt{\tau_{min}} \lt \lambda_{min}(\Sigma_{(1)}) \lt \lambda_{max}(\Sigma_{(1)}) \lt \sqrt{\tau_{max}/4}$
  - (C4a) There exists constants $\xi$, $\xi_0$, and $\nu$ such that $log(p) \le \nu n^{\xi_{0}}$, and $\xi + 6\xi_0 + 12\xi_{min} \lt \frac{1}{2}$
 
+<footer>
+[(Original)](#/8)
+</footer>
 
 Higher-Order Interaction Model
 ========================================================
@@ -228,6 +239,10 @@ Updated Assumptions
  - (C2b) There exists two constants $0 \lt \tau_{min} \lt \frac{1}{4} \lt 1 \lt \tau_{max} \lt \infty~$ s.t $\sqrt{\tau_{min}} \lt \lambda_{min}(\Sigma_{(1)}) \lt \lambda_{max}(\Sigma_{(1)}) \lt \sqrt{\tau_{max}/8}$
  - (C4b) There exists constants $\xi$, $\xi_0$, and $\nu$ such that $log(p) \le \nu n^{\xi_{0}}$, and $\xi + 6\xi_0 + 12\xi_{min} \lt \frac{1}{4}$
  
+<footer>
+[(Original)](#/8)
+</footer>
+
  
 iForm Algorithm
 ========================================================
@@ -237,7 +252,7 @@ type: exclaim
   - Step 1: (Initialization) 
   Set $\mathcal{S}^{(0)} = \emptyset$, $\mathcal{M}_0 = \emptyset$ and $\mathcal{C}_0 = \mathcal{P_1}$
   - Step 2: (Selection) In the kth step with given $\mathcal{S}^{(k-1)}$, $\mathcal{C}^{k−1}$ and $\mathcal{M}^{k−1}$, [forward regression](#/7) is used to select one more predictor from $\mathcal{C}^{k−1}/ \mathcal{S}^{k−1}$ into the model. We add the selected one into $\mathcal{S}^{k−1}$ to get $\mathcal{S}^k$. We also update $\mathcal{C}^k$ and $\mathcal{M}^k$ if the newly selected predictor is a main effect. Otherwise, $\mathcal{C}^k = \mathcal{C}^{k−1}$ and $\mathcal{M}^k = \mathcal{M}^{k−1}$
-  - Step 3: (Solution Path). Iterating Step 2, for d times, which leads to a total of n nested candidate models.  We then collect those models by a solution path $\mathbb{S}=\{\mathcal{S}^{(k)}: 1 \le k \le n\}$
+  - Step 3: (Solution Path). Iterating Step 2, for D times, which leads to a total of D nested candidate models.  We then collect those models by a solution path $\mathbb{S}=\{\mathcal{S}^{(k)}: 1 \le k \le D\}$
 </small>
 
 
@@ -252,31 +267,6 @@ Computational complexity is O(mn) with n being the sample size and m being the n
 Therefore the complexity grows linearly with p
 
 
-Model Properties
-========================================================
-type: incomplete
-
-Remark 2. **Beyond normality.** Lemmas 6, 7, 10 play important roles in the proofs of Theorems
-1 and 2. A key assumption is $E(e^{T_0|W_i|^{\alpha}}) \le A_0$ where $W_i$ is (higher) product of predictors. It is easy to see that the condition still holds, using the argument of Lemma 9, if the marginal distributions of
-X is sub Gaussian. In particular, Theorem 2 is still true if (C1') holds and the total covariance matrix  $\Sigma$  has bounded eigenvalues asymptotically
-
-
-Model Theoretical Results
-========================================================
-type: incomplete
-
-Lemmas 1 - 10 (Mostly 3 and 4)
-Theorem 2
-
-show it holds for all three scenarios
- - iForm with order-2 interactions
-  - (C2a) and (C4a)
- - iForm with higher order interactions
-  - (C2b) and (C4b)
- - iForm with generalized least squares approach
-  - show transformation from general case with correlated errors to making have uncorrelated errors
-
-
 False Discovery Rate
 ========================================================
 type: exclaim
@@ -286,7 +276,7 @@ $$BIC_2 = n*log(RSS/n) + k*(log(n) + 2*log(d^{\star}))$$
 
  - Derived $BIC_2$ by controlling the false discovery rate (FDR)
  - Showed that it is selection consistent if $d_0 = O(n^{\xi})$ for some $\xi > 0$
- - Wang (2009) showed its selection consistency for FS under ultra-high dimensional setup $d_0 = O(e^(n\xi))$
+ - Wang (2009) showed its selection consistency for FS under ultra-high dimensional setup $d_0 = O(e^{n^{\xi}})$
 
 
 Simulation Studies
@@ -295,7 +285,7 @@ type: exclaim
 
  - Simulations were performed to compare model properties
  - Data was generated from higher-order genetic interaction model
- - 50 predictors were generated with a sample size of 300 observations
+ - 500 predictors were generated with a sample size of 300 observations
  - The data was split into training and a testing set 
 
 <br>
@@ -399,7 +389,7 @@ To genetically dissect the causes of different variability among C. elegans trai
  - Microarray data preprocessed through a normal–exponential convolution background correction and were normalized using quantile standardization  Rockman et al 2010
 </small>
 <div class="midcenter" style="margin-left:100px; margin-top:75px;">
-<img src='images/CElegansPicture.png' height="250" widith="250" style="background-color:transparent; border:0px; box-shadow:none;"> </img>
+<img src='images/CElegansPicture.png' height="250" width="250" style="background-color:transparent; border:0px; box-shadow:none;"> </img>
 </div>
 
 
@@ -473,19 +463,23 @@ type: exclaim
 |AATTC_hk_hk_479_d                                        |   0.1604| 0.0344|   4.660|  0.0000|
 |AATTC_nn_np_2517_a×CATG_hk_hk_648_a                      |   0.1454| 0.0284|   5.118|  0.0000|
 </small>
+<br>
+<small>
+[Functional Results](#/41)
+</small>
 
 Application 2 (Mei Trees)
 ========================================================
 type: exclaim
 
 <small>
-$\alpha_1=AATTC\_nn\_np\_2815$   
-$\alpha_2=AATTC\_lm\_ll\_3034$  
-$\alpha_3=AATTC\_nn\_np\_1615$  
+$\alpha_1=AATTC\_nn\_np\_2815(AA/Aa)$   
+$\alpha_2=AATTC\_lm\_ll\_3034(BB/Bb)$  
+$\alpha_3=AATTC\_nn\_np\_1615(CC/Cc)$  
 </small>
 
 <div class="tooltip">
-<img src='images/GrowthCurveComparison.png', width = "1000px"></img>
+<img src='images/GrowthCurveComparison.png', height="500px" width = "1000px"></img>
   <span class="tooltiptext">
 $\mu_{111} = \mu(t) + \alpha_1(t) + \alpha_2(t) + \alpha_3(t) + i_{12}(t) + i_{13}(t) + i_{23}(t) + i_{123}(t)$
 $\mu_{112} = \mu(t) + \alpha_1(t) + \alpha_2(t) - \alpha_3(t) + i_{12}(t) - i_{13}(t) - i_{23}(t) - i_{123}(t)$
@@ -539,7 +533,7 @@ type: exclaim
 
  - Unbiased
  - Consistent
- - Statisticall and Computationally efficient
+ - Statistically and Computationally efficient
  - Asymptotically normal
  
 
@@ -547,8 +541,8 @@ Legendre Polynomials
 ========================================================
 type: exclaim
 
- - Orthogonal and therefore variables will not be correlated
- - variety of fits up to the order of the researcher's choosing
+ - Orthogonal and therefore predictors will not be correlated
+ - Variety of polynomial fits
  - Easily implemented as basis functions 
   - saves on computational cost and time over using splines or other basis functions learned from the data
 
@@ -567,26 +561,6 @@ $$
 </span>
 </div>
 
-Legendre Polynomials
-========================================================
-type: exclaim
-
-<img src='images/GrowthCurveExample.png', width = "1000px"> 
-
-
-Legendre Polynomials
-========================================================
-type: exclaim
-
-<img src='images/ExampleDataGrowthCurve.png', width = "1000px"> 
-
-
-Legendre Polynomials
-========================================================
-type: exclaim
-
-<img src='images/LegendreFit.png', width = "1000px"> 
-
 
 iForm with Legendre Polynomials Model
 ========================================================
@@ -595,35 +569,67 @@ type: exclaim
 $$\alpha_j(t) = (L_0(t), L_1(t), ... , L_s(t))*(u_{j0}, u_{j1},...,u_{js})^T$$
 $$\beta_j(t) = (L_0(t), L_1(t), ... , L_{s'}(t))*(v_{j0}, v_{j1},...,v_{js'})^T$$
 
-
 $$
 \begin{equation}
 \begin{split}
-y(t) = \mu(t) + \sum_{j=1}^{J}\alpha_j(t)\xi_j + \sum_{k=1}^{K}\beta_k(t)\zeta_k \\ 
-+ \sum_{I_1 \lt I_2=1}^{I}\gamma_I^{aa}(t) \xi_{I_1}\xi_{I_2} + \sum_{I_1 \lt I_2=1}^{I}\gamma_I^{ad}(t) \xi_{I_1}\zeta_{I_2} \\
-+ \sum_{I_1 \lt I_2=1}^{I} \gamma_I^{da}(t) \zeta_{I_1}\xi_{I_2} + \sum_{I_1 \lt I_2=1}^{I} \gamma_I^{dd}(t)\zeta_{I_1}\zeta_{I_2} + \epsilon(t)
+y(t) = \mu(t) + \sum_{j=1}^{J}\alpha_j(t)\xi_j + \sum_{k=1}^{K}\beta_k(t)\zeta_k + \sum_{I_1 \lt I_2=1}^{I}\gamma_I^{aa}(t) \xi_{I_1}\xi_{I_2} \\ 
++ \sum_{I_1 \lt I_2=1}^{I}\gamma_I^{ad}(t) \xi_{I_1}\zeta_{I_2} + \sum_{I_1 \lt I_2=1}^{I} \gamma_I^{da}(t) \zeta_{I_1}\xi_{I_2} + \sum_{I_1 \lt I_2=1}^{I} \gamma_I^{dd}(t)\zeta_{I_1}\zeta_{I_2} + \epsilon(t)
 \end{split}
 \end{equation}
 $$
 
+$$\mu(t)=\frac{a}{(1+b*exp\{-r*t\})}$$
+
  Model (iForm with Legendre Model)
 ========================================================
-type: incomplete
+type: exclaim
 
 <small>
   - Step 1: (Initialization) 
   Set $\mathcal{S}^{(0)} = \emptyset$, $\mathcal{M}_0 = \emptyset$ and $\mathcal{C}_0 = \mathcal{P_1}$
-  - Step 2: (Selection) In the kth step with given $\mathcal{S}^{(k-1)}$, $\mathcal{C}^{k−1}$ and $\mathcal{M}^{k−1}$, [forward regression](#/7) is used to select one more predictor from $\mathcal{C}^{k−1}/ \mathcal{S}^{k−1}$ into the model. We add the selected one into $\mathcal{S}^{k−1}$ to get $\mathcal{S}^k$. We also update $\mathcal{C}^k$ and $\mathcal{M}^k$ if the newly selected predictor is a main effect. Otherwise, $\mathcal{C}^k = \mathcal{C}^{k−1}$ and $\mathcal{M}^k = \mathcal{M}^{k−1}$
-  - Step 3: (Solution Path). Iterating Step 2, for d times, which leads to a total of n nested candidate models.  We then collect those models by a solution path $\mathbb{S}=\{\mathcal{S}^{(k)}: 1 \le k \le n\}$
+  - Step 2: (Selection) In the kth step with given $\mathcal{S}^{(k-1)}$, $\mathcal{C}^{k−1}$ and $\mathcal{M}^{k−1}$, [forward regression](#/7) is used to select one more predictor from $\mathcal{C}^{k−1}/ \mathcal{S}^{k−1}$ into the model while checking for different degrees of the legendre polynomial used as a basis for the genetic effect. We add the selected one into $\mathcal{S}^{k−1}$ to get $\mathcal{S}^k$. We also update $\mathcal{C}^k$ and $\mathcal{M}^k$ if the newly selected predictor is a main effect. Otherwise, $\mathcal{C}^k = \mathcal{C}^{k−1}$ and $\mathcal{M}^k = \mathcal{M}^{k−1}$
+  - Step 3: (Solution Path). Iterating Step 2, for D times, which leads to a total of D nested candidate models.  We then collect those models by a solution path $\mathbb{S}=\{\mathcal{S}^{(k)}: 1 \le k \le D\}$
 </small>
 
 
-Simulation Results
+Legendre Polynomials (Simulation)
 ========================================================
-type: incomplete
+type: exclaim
 
-100% screening consistent but also fitted up to cutoff amount in algorithm  
+<img src='images/GrowthCurveExample.png', height= "500px" width="900px"> 
+<small>
 
+|Model             | T1_tpr| T1_fpr| T2_tpr| T2_fpr|
+|:-----------------|------:|------:|------:|------:|
+|Model Predictors  | 1.0000| 0.1417| 1.0000| 0.0037|
+|Polynomial Degree | 0.7125| 0.0251| 0.9667| 0.0007|
+</small>
+
+Legendre Polynomials (Simulation)
+========================================================
+type: exclaim
+
+<img src='images/ExampleDataGrowthCurve.png', height= "500px" width="900px"> 
+<small>
+
+|Model             | T1_tpr| T1_fpr| T2_tpr| T2_fpr|
+|:-----------------|------:|------:|------:|------:|
+|Model Predictors  | 1.0000| 0.1417| 1.0000| 0.0037|
+|Polynomial Degree | 0.7125| 0.0251| 0.9667| 0.0007|
+</small>
+
+Legendre Polynomials (Simulation)
+========================================================
+type: exclaim
+
+<img src='images/LegendreFit.png', height= "500px" width="900px"> 
+<small>
+
+|Model             | T1_tpr| T1_fpr| T2_tpr| T2_fpr|
+|:-----------------|------:|------:|------:|------:|
+|Model Predictors  | 1.0000| 0.1417| 1.0000| 0.0037|
+|Polynomial Degree | 0.7125| 0.0251| 0.9667| 0.0007|
+</small>
 
 
 Application 2 (Mei Trees)
@@ -662,46 +668,44 @@ type: exclaim
 
 Application
 ========================================================
-type: incomplete
+type: exclaim
 
-More notes on the comparison
-
-Uses all information together
-more statistically powerful this way
-
-maybe also perturb the data to see how robust the estimates are
-
+ - Able to use all information to generate the model
+ - Fit growth parameter of the specifed function during procedure
+ - Found new epistatic effects that fitting only a single static response would not have found  
+<br>
+<small>
+[Previous Results](#/28)
+</small>
 
 Conclusions
 ========================================================
-type: incomplete
+type: exclaim
 
-Power model
-many applications
-flexible model, can handle other growth equations or biologically relevant functional equations
-
+ - Sure Screening Properties
+ - Computationally Efficient
+ - Allows for flexible genetic effects 
+    - Growth Curve
+    - Correlated Error Structure
+ - Tends to include more effects to obtain sure screening
 
 
 Future Aims
 ========================================================
-type: incomplete
-
+type: exclaim
+<small>
  - Aim 1
-incorporate other error structures and mathematical functions that are biologically meaningful
+   - Continue testing properties of the iForm procedure used with the Legendre Polynomials
+   - Submit by Summer
 
  - Aim 2
- use other type of multivariate responses that are correlated.  Like gene expression and protein expression on same genes.  What SNPs predict these .
- 
- Or use expression levels of different cell lines or tissue types.  
- 
- You could also maybe incorporate a functional component to the expression levels over time. 
- 
- __Analysis of Time-Series Gene Expression Data: Methods, Challenges, and Opportunities__
- Monitoring the change in expression patterns over time provides the distinct possibility of unraveling the mechanistic drivers characterizing cellular responses. Gene arrays measuring the level of mRNA expression of thousands of genes simultaneously provide a method of high-throughput data collection necessary for obtaining the scope of data required for understanding the complexities of living organisms. Unraveling the coherent complex structures of transcriptional dynamics is the goal of a large family of computational methods aiming at upgrading the information content of time-course gene expression data. In this review, we summarize the qualitative characteristics of these approaches, discuss the main challenges that this type of complex data present, and, finally, explore the opportunities in the context of developing mechanistic models of cellular response.
- 
- 
- - Aim 3
+   - Consider other multivariate responses and correlated error structures.  
+   - Expression levels of different cell lines or tissue types as multivariate response 
 
+ - Aim 3
+  - Combine functional component and multivariate response into complete functional network
+    - Time-Series of gene expression from cell lines or tissue types
+</small>
 
 References
 ========================================================
@@ -711,7 +715,7 @@ type: exclaim
  - Lim and Hastie 2014
  - Bien et al 2013
  - Wang 2012
- - Wnag and Leng 2015
+ - Wang and Leng 2015
  - Fan and Lv 2008
  - Rockman et al 2010
  - Pearson, 2006
@@ -739,14 +743,18 @@ type: exclaim
 
 Acknowledgments
 ========================================================
-type: incomplete
+type: exclaim
 
-Advisor
-Committee
-Family
-Nursing Department
+ - Family
+ - Advisor: Rongling Wu
+ - Committee
+   - Vern Chinchilli
+   - Lan Kong
+   - James Broach
+ - PHS Faculty
+ - Nursing Department
 
 
 Thank you
 ========================================================
-type: incomplete
+type: exclaim
